@@ -2,6 +2,8 @@
 
 [faui](https://github.com/lawlietfeng/faui) 完整版（Full Edition）的组件示例站点。所有页面均由纯 JSON Schema 驱动，零硬编码 UI 代码。
 
+**在线预览**: https://lawlietfeng.github.io/full-landing-page/
+
 ## 页面列表
 
 | 页面 | Schema 文件 | 说明 |
