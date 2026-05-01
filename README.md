@@ -1,6 +1,6 @@
 # full-landing-page
 
-[faui](https://github.com/lawlietfeng/faui) 完整版（Full Edition）的组件示例站点。所有页面均由纯 JSON Schema 驱动，零硬编码 UI 代码。
+faui 完整版（Full Edition）的组件示例站点。所有页面均由纯 JSON Schema 驱动，零硬编码 UI 代码。
 
 **在线预览**: https://lawlietfeng.github.io/full-landing-page/
 
@@ -19,7 +19,7 @@
 
 ## 技术栈
 
-- [faui/full](https://github.com/lawlietfeng/faui) — 67+ 组件的 JSON Schema 渲染器
+- faui/full — 67+ 组件的 JSON Schema 渲染器
 - React 19 + TypeScript
 - Ant Design 5 + Tailwind CSS v4
 - framer-motion（动画）
@@ -67,8 +67,8 @@ src/
 
 | 项目 | 说明 |
 |------|------|
-| [faui](https://github.com/lawlietfeng/faui) | JSON Schema UI 渲染器（本站使用的 Full Edition） |
-| [faui-agent](https://github.com/lawlietfeng/faui-agent) | AI Agent 框架，通过 LLM 生成 faui JSON Schema |
+| faui | JSON Schema UI 渲染器（本站使用的 Full Edition） |
+| faui-agent | AI Agent 框架，通过 LLM 生成 faui JSON Schema |
 
 ## License
 
