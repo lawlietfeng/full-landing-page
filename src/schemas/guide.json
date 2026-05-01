@@ -1,0 +1,818 @@
+{
+  "components": [
+    {
+      "id": "guide-root",
+      "component": "box",
+      "children": [
+        "guide-anchor",
+        "guide-hero",
+        "guide-install",
+        "guide-minimal",
+        "guide-concepts",
+        "guide-advanced",
+        "guide-faq"
+      ]
+    },
+
+    {
+      "id": "guide-anchor",
+      "component": "anchor",
+      "visible": "${$root.screen !== 'mobile'}",
+      "direction": "vertical",
+      "affix": false,
+      "replace": true,
+      "style": { "position": "fixed", "right": "32px", "top": "50%", "transform": "translateY(-50%)", "zIndex": 100, "backgroundColor": "rgba(255,255,255,0.9)", "backdropFilter": "blur(12px)", "WebkitBackdropFilter": "blur(12px)", "padding": "12px 16px", "borderRadius": "12px", "boxShadow": "0 2px 8px rgba(0,0,0,0.08)" },
+      "items": [
+        { "key": "top", "href": "#guide-top", "title": "顶部" },
+        { "key": "install", "href": "#guide-install-section", "title": "环境准备" },
+        { "key": "minimal", "href": "#guide-minimal-section", "title": "最小示例" },
+        { "key": "concepts", "href": "#guide-concepts-section", "title": "核心概念" },
+        { "key": "advanced", "href": "#guide-advanced-section", "title": "进阶话题" },
+        { "key": "faq", "href": "#guide-faq-section", "title": "FAQ" }
+      ]
+    },
+
+    { "id": "__comment_hero", "component": "box", "visible": false },
+
+    {
+      "id": "guide-hero",
+      "component": "box",
+      "domId": "guide-top",
+      "align": "center",
+      "style": { "backgroundColor": "#272729", "padding": "56px 24px 40px" },
+      "children": ["guide-hero-eyebrow", "guide-hero-title", "guide-hero-subtitle", "guide-hero-desc"],
+      "animation": "fade"
+    },
+    {
+      "id": "guide-hero-eyebrow",
+      "component": "typography",
+      "type": "text",
+      "content": "GUIDE",
+      "style": { "fontSize": "12px", "fontWeight": 500, "lineHeight": 1.33, "color": "#86868b", "margin": 0, "marginBottom": "12px", "textAlign": "center", "letterSpacing": "1.5px", "textTransform": "uppercase" }
+    },
+    {
+      "id": "guide-hero-title",
+      "component": "typography",
+      "type": "title",
+      "content": "快速上手",
+      "style": { "fontSize": "40px", "fontWeight": 600, "lineHeight": 1.1, "color": "#ffffff", "margin": 0, "marginBottom": "12px", "textAlign": "center" }
+    },
+    {
+      "id": "guide-hero-subtitle",
+      "component": "typography",
+      "type": "text",
+      "content": "从安装到渲染第一个页面，只需要几分钟",
+      "style": { "fontSize": "17px", "fontWeight": 400, "lineHeight": 1.47, "color": "#86868b", "margin": 0, "textAlign": "center" }
+    },
+    {
+      "id": "guide-hero-desc",
+      "component": "typography",
+      "type": "text",
+      "content": "跟随教程逐步了解 JSON Schema 的编写方式与核心概念",
+      "style": { "fontSize": "14px", "fontWeight": 400, "lineHeight": 1.43, "color": "#6e6e73", "margin": 0, "marginTop": "8px", "textAlign": "center" }
+    },
+
+    { "id": "__comment_install", "component": "box", "visible": false },
+
+    {
+      "id": "guide-install",
+      "component": "box",
+      "domId": "guide-install-section",
+      "align": "center",
+      "style": { "backgroundColor": "#ffffff", "padding": "80px 24px" },
+      "children": ["guide-install-inner"],
+      "animation": "fade"
+    },
+    {
+      "id": "guide-install-inner",
+      "component": "box",
+      "style": { "maxWidth": "680px", "width": "100%" },
+      "spacing": 24,
+      "children": ["guide-install-title", "guide-install-desc", "guide-install-code1", "guide-install-code2-label", "guide-install-code2", "guide-install-alert", "guide-install-import-label", "guide-install-import"]
+    },
+    {
+      "id": "guide-install-title",
+      "component": "typography",
+      "type": "title",
+      "content": "环境准备",
+      "style": { "fontSize": "28px", "fontWeight": 600, "lineHeight": 1.14, "color": "#1d1d1f", "margin": 0 }
+    },
+    {
+      "id": "guide-install-desc",
+      "component": "typography",
+      "type": "text",
+      "content": "React 18+ 项目即可，安装核心依赖：",
+      "style": { "fontSize": "17px", "fontWeight": 400, "lineHeight": 1.47, "color": "#86868b", "margin": 0 }
+    },
+    {
+      "id": "guide-install-code1",
+      "component": "box",
+      "style": { "backgroundColor": "#1d1d1f", "borderRadius": "12px", "padding": "16px 20px" },
+      "children": ["guide-install-code1-text"]
+    },
+    {
+      "id": "guide-install-code1-text",
+      "component": "typography",
+      "type": "text",
+      "content": "npm install faui antd dayjs",
+      "style": { "fontSize": "15px", "fontWeight": 400, "color": "#e0e0e0", "margin": 0, "fontFamily": "ui-monospace, 'SF Mono', Monaco, 'Cascadia Code', monospace" }
+    },
+    {
+      "id": "guide-install-code2-label",
+      "component": "typography",
+      "type": "text",
+      "content": "可选：安装 framer-motion 启用动画增强",
+      "style": { "fontSize": "14px", "fontWeight": 400, "lineHeight": 1.43, "color": "#86868b", "margin": 0 }
+    },
+    {
+      "id": "guide-install-code2",
+      "component": "box",
+      "style": { "backgroundColor": "#1d1d1f", "borderRadius": "12px", "padding": "16px 20px" },
+      "children": ["guide-install-code2-text"]
+    },
+    {
+      "id": "guide-install-code2-text",
+      "component": "typography",
+      "type": "text",
+      "content": "npm install framer-motion",
+      "style": { "fontSize": "15px", "fontWeight": 400, "color": "#e0e0e0", "margin": 0, "fontFamily": "ui-monospace, 'SF Mono', Monaco, 'Cascadia Code', monospace" }
+    },
+    {
+      "id": "guide-install-alert",
+      "component": "alert",
+      "status": "info",
+      "title": "antd 和 dayjs 是 peer dependency，需要和 faui 一起安装。",
+      "showIcon": true,
+      "style": { "borderRadius": "12px" }
+    },
+    {
+      "id": "guide-install-import-label",
+      "component": "typography",
+      "type": "text",
+      "content": "在入口文件中引入：",
+      "style": { "fontSize": "14px", "fontWeight": 400, "lineHeight": 1.43, "color": "#86868b", "margin": 0 }
+    },
+    {
+      "id": "guide-install-import",
+      "component": "box",
+      "style": { "backgroundColor": "#1d1d1f", "borderRadius": "12px", "padding": "16px 20px" },
+      "children": ["guide-install-import-text"]
+    },
+    {
+      "id": "guide-install-import-text",
+      "component": "typography",
+      "type": "text",
+      "content": "import { SchemaRenderer, ComponentRegistry } from 'faui/full'",
+      "style": { "fontSize": "15px", "fontWeight": 400, "color": "#e0e0e0", "margin": 0, "fontFamily": "ui-monospace, 'SF Mono', Monaco, 'Cascadia Code', monospace" }
+    },
+
+    { "id": "__comment_minimal", "component": "box", "visible": false },
+
+    {
+      "id": "guide-minimal",
+      "component": "box",
+      "domId": "guide-minimal-section",
+      "align": "center",
+      "style": { "backgroundColor": "#272729", "padding": "80px 24px" },
+      "children": ["guide-minimal-title", "guide-minimal-desc", "guide-minimal-row", "guide-minimal-alert"],
+      "animation": "fade"
+    },
+    {
+      "id": "guide-minimal-title",
+      "component": "typography",
+      "type": "title",
+      "content": "最小示例",
+      "style": { "fontSize": "40px", "fontWeight": 600, "lineHeight": 1.1, "color": "#ffffff", "margin": 0, "marginBottom": "12px", "textAlign": "center" }
+    },
+    {
+      "id": "guide-minimal-desc",
+      "component": "typography",
+      "type": "text",
+      "content": "一个完整可运行的 Hello World — 左边是 React 代码，右边是 JSON Schema",
+      "style": { "fontSize": "17px", "fontWeight": 400, "lineHeight": 1.47, "color": "#86868b", "margin": 0, "marginBottom": "32px", "textAlign": "center" }
+    },
+    {
+      "id": "guide-minimal-row",
+      "component": "row",
+      "gutter": [24, 24],
+      "align": "top",
+      "style": { "maxWidth": "800px", "width": "100%" },
+      "children": ["guide-minimal-col-jsx", "guide-minimal-col-json"]
+    },
+    {
+      "id": "guide-minimal-col-jsx",
+      "component": "col",
+      "xs": 24,
+      "lg": 12,
+      "children": ["guide-minimal-jsx-card"]
+    },
+    {
+      "id": "guide-minimal-jsx-card",
+      "component": "box",
+      "style": { "backgroundColor": "#1d1d1f", "borderRadius": "12px", "padding": "24px" },
+      "children": ["guide-minimal-jsx-label", "guide-minimal-jsx-code"]
+    },
+    {
+      "id": "guide-minimal-jsx-label",
+      "component": "typography",
+      "type": "text",
+      "content": "App.tsx",
+      "style": { "fontSize": "12px", "fontWeight": 400, "color": "#86868b", "margin": 0, "marginBottom": "16px" }
+    },
+    {
+      "id": "guide-minimal-jsx-code",
+      "component": "typography",
+      "type": "text",
+      "content": "import schema from './schema.json'\nimport {\n  SchemaRenderer,\n  ComponentRegistry\n} from 'faui/full'\n\nexport default function App() {\n  return (\n    <SchemaRenderer\n      schema={schema}\n      componentRegistry={\n        ComponentRegistry\n      }\n    />\n  )\n}",
+      "style": { "fontSize": "14px", "fontWeight": 400, "lineHeight": 1.6, "color": "#e0e0e0", "margin": 0, "fontFamily": "ui-monospace, 'SF Mono', Monaco, 'Cascadia Code', monospace", "whiteSpace": "pre" }
+    },
+    {
+      "id": "guide-minimal-col-json",
+      "component": "col",
+      "xs": 24,
+      "lg": 12,
+      "children": ["guide-minimal-json-card"]
+    },
+    {
+      "id": "guide-minimal-json-card",
+      "component": "box",
+      "style": { "backgroundColor": "#1d1d1f", "borderRadius": "12px", "padding": "24px" },
+      "children": ["guide-minimal-json-label", "guide-minimal-json-code"]
+    },
+    {
+      "id": "guide-minimal-json-label",
+      "component": "typography",
+      "type": "text",
+      "content": "schema.json",
+      "style": { "fontSize": "12px", "fontWeight": 400, "color": "#86868b", "margin": 0, "marginBottom": "16px" }
+    },
+    {
+      "id": "guide-minimal-json-code",
+      "component": "typography",
+      "type": "text",
+      "content": "{\n  \"components\": [\n    {\n      \"id\": \"root\",\n      \"component\": \"box\",\n      \"children\": [\"hello\"]\n    },\n    {\n      \"id\": \"hello\",\n      \"component\": \"typography\",\n      \"type\": \"title\",\n      \"content\": \"Hello FAUI\"\n    }\n  ],\n  \"dataModel\": {},\n  \"root\": [\"root\"]\n}",
+      "style": { "fontSize": "14px", "fontWeight": 400, "lineHeight": 1.6, "color": "#e0e0e0", "margin": 0, "fontFamily": "ui-monospace, 'SF Mono', Monaco, 'Cascadia Code', monospace", "whiteSpace": "pre" }
+    },
+    {
+      "id": "guide-minimal-alert",
+      "component": "alert",
+      "status": "info",
+      "title": "schema 必须包含 root 数组来指定入口组件，SchemaRenderer 会从这里开始渲染。",
+      "showIcon": true,
+      "style": { "borderRadius": "12px", "marginTop": "24px", "maxWidth": "800px", "width": "100%" }
+    },
+
+    { "id": "__comment_concepts", "component": "box", "visible": false },
+
+    {
+      "id": "guide-concepts",
+      "component": "box",
+      "domId": "guide-concepts-section",
+      "align": "center",
+      "style": { "backgroundColor": "#f5f5f7", "padding": "80px 24px" },
+      "children": ["guide-concepts-title", "guide-concepts-inner"],
+      "animation": "fade"
+    },
+    {
+      "id": "guide-concepts-title",
+      "component": "typography",
+      "type": "title",
+      "content": "核心概念",
+      "style": { "fontSize": "40px", "fontWeight": 600, "lineHeight": 1.1, "color": "#1d1d1f", "margin": 0, "marginBottom": "48px", "textAlign": "center" }
+    },
+    {
+      "id": "guide-concepts-inner",
+      "component": "box",
+      "style": { "maxWidth": "680px", "width": "100%" },
+      "spacing": 0,
+      "children": [
+        "guide-c1-title", "guide-c1-desc", "guide-c1-code",
+        "guide-c1-divider",
+        "guide-c2-title", "guide-c2-desc", "guide-c2-code",
+        "guide-c2-divider",
+        "guide-c3-title", "guide-c3-desc", "guide-c3-code1", "guide-c3-code2-label", "guide-c3-code2",
+        "guide-c3-divider",
+        "guide-c4-title", "guide-c4-desc", "guide-c4-code", "guide-c4-alert",
+        "guide-c4-divider",
+        "guide-c5-title", "guide-c5-desc", "guide-c5-code1-label", "guide-c5-code1", "guide-c5-code2-label", "guide-c5-code2",
+        "guide-c5-divider",
+        "guide-c6-title", "guide-c6-desc", "guide-c6-code", "guide-c6-alert"
+      ]
+    },
+
+    {
+      "id": "guide-c1-title",
+      "component": "typography",
+      "type": "title",
+      "content": "components 数组",
+      "style": { "fontSize": "21px", "fontWeight": 600, "lineHeight": 1.19, "color": "#1d1d1f", "margin": 0, "marginBottom": "8px" }
+    },
+    {
+      "id": "guide-c1-desc",
+      "component": "typography",
+      "type": "text",
+      "content": "所有组件平铺在一个数组里，通过 id 互相引用。children 数组建立父子关系，SchemaRenderer 从 root 开始递归渲染。",
+      "style": { "fontSize": "17px", "fontWeight": 400, "lineHeight": 1.47, "color": "#86868b", "margin": 0, "marginBottom": "16px" }
+    },
+    {
+      "id": "guide-c1-code",
+      "component": "box",
+      "style": { "backgroundColor": "#1d1d1f", "borderRadius": "12px", "padding": "20px" },
+      "children": ["guide-c1-code-text"]
+    },
+    {
+      "id": "guide-c1-code-text",
+      "component": "typography",
+      "type": "text",
+      "content": "\"components\": [\n  { \"id\": \"root\", \"component\": \"box\",\n    \"children\": [\"title\", \"desc\"] },\n  { \"id\": \"title\", \"component\": \"typography\",\n    \"type\": \"title\", \"content\": \"Hello\" },\n  { \"id\": \"desc\", \"component\": \"typography\",\n    \"type\": \"text\", \"content\": \"World\" }\n]",
+      "style": { "fontSize": "14px", "fontWeight": 400, "lineHeight": 1.6, "color": "#e0e0e0", "margin": 0, "fontFamily": "ui-monospace, 'SF Mono', Monaco, 'Cascadia Code', monospace", "whiteSpace": "pre" }
+    },
+    {
+      "id": "guide-c1-divider",
+      "component": "divider",
+      "style": { "margin": "32px 0" }
+    },
+
+    {
+      "id": "guide-c2-title",
+      "component": "typography",
+      "type": "title",
+      "content": "dataModel 与数据绑定",
+      "style": { "fontSize": "21px", "fontWeight": 600, "lineHeight": 1.19, "color": "#1d1d1f", "margin": 0, "marginBottom": "8px" }
+    },
+    {
+      "id": "guide-c2-desc",
+      "component": "typography",
+      "type": "text",
+      "content": "dataModel 是全局状态树。组件通过 value: { path: \"/xxx\" } 实现双向绑定 — 用户输入自动写回 dataModel，其他组件实时响应变化。",
+      "style": { "fontSize": "17px", "fontWeight": 400, "lineHeight": 1.47, "color": "#86868b", "margin": 0, "marginBottom": "16px" }
+    },
+    {
+      "id": "guide-c2-code",
+      "component": "box",
+      "style": { "backgroundColor": "#1d1d1f", "borderRadius": "12px", "padding": "20px" },
+      "children": ["guide-c2-code-text"]
+    },
+    {
+      "id": "guide-c2-code-text",
+      "component": "typography",
+      "type": "text",
+      "content": "// 输入框绑定到 dataModel\n{ \"component\": \"input\",\n  \"value\": { \"path\": \"/user/name\" } }\n\n// dataModel 初始值\n\"dataModel\": { \"user\": { \"name\": \"\" } }",
+      "style": { "fontSize": "14px", "fontWeight": 400, "lineHeight": 1.6, "color": "#e0e0e0", "margin": 0, "fontFamily": "ui-monospace, 'SF Mono', Monaco, 'Cascadia Code', monospace", "whiteSpace": "pre" }
+    },
+    {
+      "id": "guide-c2-divider",
+      "component": "divider",
+      "style": { "margin": "32px 0" }
+    },
+
+    {
+      "id": "guide-c3-title",
+      "component": "typography",
+      "type": "title",
+      "content": "表达式引擎 $​{}",
+      "style": { "fontSize": "21px", "fontWeight": 600, "lineHeight": 1.19, "color": "#1d1d1f", "margin": 0, "marginBottom": "8px" }
+    },
+    {
+      "id": "guide-c3-desc",
+      "component": "typography",
+      "type": "text",
+      "content": "任何字符串属性都支持 $​{} 表达式。通过 $root 访问全局数据，$current 访问 Repeater 当前项，$parent 访问父数组。表达式在安全沙箱中运行。",
+      "style": { "fontSize": "17px", "fontWeight": 400, "lineHeight": 1.47, "color": "#86868b", "margin": 0, "marginBottom": "16px" }
+    },
+    {
+      "id": "guide-c3-code1",
+      "component": "box",
+      "style": { "backgroundColor": "#1d1d1f", "borderRadius": "12px", "padding": "20px", "marginBottom": "12px" },
+      "children": ["guide-c3-code1-text"]
+    },
+    {
+      "id": "guide-c3-code1-text",
+      "component": "typography",
+      "type": "text",
+      "content": "// 模板文本\n\"content\": \"Hello, $​{$root.user.name}!\"",
+      "style": { "fontSize": "14px", "fontWeight": 400, "lineHeight": 1.6, "color": "#e0e0e0", "margin": 0, "fontFamily": "ui-monospace, 'SF Mono', Monaco, 'Cascadia Code', monospace", "whiteSpace": "pre" }
+    },
+    {
+      "id": "guide-c3-code2-label",
+      "component": "typography",
+      "type": "text",
+      "content": "条件样式 — 表达式可以用在 style 的值里：",
+      "style": { "fontSize": "14px", "fontWeight": 400, "lineHeight": 1.43, "color": "#86868b", "margin": 0, "marginBottom": "8px" }
+    },
+    {
+      "id": "guide-c3-code2",
+      "component": "box",
+      "style": { "backgroundColor": "#1d1d1f", "borderRadius": "12px", "padding": "20px" },
+      "children": ["guide-c3-code2-text"]
+    },
+    {
+      "id": "guide-c3-code2-text",
+      "component": "typography",
+      "type": "text",
+      "content": "\"color\": \"$​{$root.count > 10\n  ? '#34c759'\n  : '#86868b'}\"",
+      "style": { "fontSize": "14px", "fontWeight": 400, "lineHeight": 1.6, "color": "#e0e0e0", "margin": 0, "fontFamily": "ui-monospace, 'SF Mono', Monaco, 'Cascadia Code', monospace", "whiteSpace": "pre" }
+    },
+    {
+      "id": "guide-c3-divider",
+      "component": "divider",
+      "style": { "margin": "32px 0" }
+    },
+
+    {
+      "id": "guide-c4-title",
+      "component": "typography",
+      "type": "title",
+      "content": "Action 体系",
+      "style": { "fontSize": "21px", "fontWeight": 600, "lineHeight": 1.19, "color": "#1d1d1f", "margin": 0, "marginBottom": "8px" }
+    },
+    {
+      "id": "guide-c4-desc",
+      "component": "typography",
+      "type": "text",
+      "content": "on_tap 触发动作链，支持 update_data（更新数据）、message（消息提示）、notification（通知）、http_proxy（HTTP 请求）等。多个 action 按数组顺序依次执行。",
+      "style": { "fontSize": "17px", "fontWeight": 400, "lineHeight": 1.47, "color": "#86868b", "margin": 0, "marginBottom": "16px" }
+    },
+    {
+      "id": "guide-c4-code",
+      "component": "box",
+      "style": { "backgroundColor": "#1d1d1f", "borderRadius": "12px", "padding": "20px", "marginBottom": "16px" },
+      "children": ["guide-c4-code-text"]
+    },
+    {
+      "id": "guide-c4-code-text",
+      "component": "typography",
+      "type": "text",
+      "content": "\"on_tap\": [\n  { \"action\": \"update_data\",\n    \"path\": \"/count\",\n    \"value\": \"$​{$root.count + 1}\" },\n  { \"action\": \"message\",\n    \"payload\": {\n      \"type\": \"success\",\n      \"content\": \"计数 +1\"\n    } }\n]",
+      "style": { "fontSize": "14px", "fontWeight": 400, "lineHeight": 1.6, "color": "#e0e0e0", "margin": 0, "fontFamily": "ui-monospace, 'SF Mono', Monaco, 'Cascadia Code', monospace", "whiteSpace": "pre" }
+    },
+    {
+      "id": "guide-c4-alert",
+      "component": "alert",
+      "status": "warning",
+      "title": "on_tap 只有 Button 和 FloatButton 支持。Typography 等组件设置 on_tap 不会生效。",
+      "showIcon": true,
+      "style": { "borderRadius": "12px" }
+    },
+    {
+      "id": "guide-c4-divider",
+      "component": "divider",
+      "style": { "margin": "32px 0" }
+    },
+
+    {
+      "id": "guide-c5-title",
+      "component": "typography",
+      "type": "title",
+      "content": "条件渲染 Condition",
+      "style": { "fontSize": "21px", "fontWeight": 600, "lineHeight": 1.19, "color": "#1d1d1f", "margin": 0, "marginBottom": "8px" }
+    },
+    {
+      "id": "guide-c5-desc",
+      "component": "typography",
+      "type": "text",
+      "content": "两种模式：when/then/else 做布尔判断，match/cases 做多值分支。切换时可配置过渡动画。",
+      "style": { "fontSize": "17px", "fontWeight": 400, "lineHeight": 1.47, "color": "#86868b", "margin": 0, "marginBottom": "16px" }
+    },
+    {
+      "id": "guide-c5-code1-label",
+      "component": "typography",
+      "type": "text",
+      "content": "布尔判断：",
+      "style": { "fontSize": "14px", "fontWeight": 600, "lineHeight": 1.43, "color": "#1d1d1f", "margin": 0, "marginBottom": "8px" }
+    },
+    {
+      "id": "guide-c5-code1",
+      "component": "box",
+      "style": { "backgroundColor": "#1d1d1f", "borderRadius": "12px", "padding": "20px", "marginBottom": "16px" },
+      "children": ["guide-c5-code1-text"]
+    },
+    {
+      "id": "guide-c5-code1-text",
+      "component": "typography",
+      "type": "text",
+      "content": "{ \"component\": \"condition\",\n  \"when\": \"$​{$root.loggedIn}\",\n  \"then\": [\"welcome-msg\"],\n  \"else\": [\"login-form\"] }",
+      "style": { "fontSize": "14px", "fontWeight": 400, "lineHeight": 1.6, "color": "#e0e0e0", "margin": 0, "fontFamily": "ui-monospace, 'SF Mono', Monaco, 'Cascadia Code', monospace", "whiteSpace": "pre" }
+    },
+    {
+      "id": "guide-c5-code2-label",
+      "component": "typography",
+      "type": "text",
+      "content": "多值分支：",
+      "style": { "fontSize": "14px", "fontWeight": 600, "lineHeight": 1.43, "color": "#1d1d1f", "margin": 0, "marginBottom": "8px" }
+    },
+    {
+      "id": "guide-c5-code2",
+      "component": "box",
+      "style": { "backgroundColor": "#1d1d1f", "borderRadius": "12px", "padding": "20px" },
+      "children": ["guide-c5-code2-text"]
+    },
+    {
+      "id": "guide-c5-code2-text",
+      "component": "typography",
+      "type": "text",
+      "content": "{ \"component\": \"condition\",\n  \"match\": \"$​{$root.currentTab}\",\n  \"cases\": {\n    \"home\": [\"home-page\"],\n    \"about\": [\"about-page\"]\n  },\n  \"animation\": \"fade\" }",
+      "style": { "fontSize": "14px", "fontWeight": 400, "lineHeight": 1.6, "color": "#e0e0e0", "margin": 0, "fontFamily": "ui-monospace, 'SF Mono', Monaco, 'Cascadia Code', monospace", "whiteSpace": "pre" }
+    },
+    {
+      "id": "guide-c5-divider",
+      "component": "divider",
+      "style": { "margin": "32px 0" }
+    },
+
+    {
+      "id": "guide-c6-title",
+      "component": "typography",
+      "type": "title",
+      "content": "列表渲染 Repeater",
+      "style": { "fontSize": "21px", "fontWeight": 600, "lineHeight": 1.19, "color": "#1d1d1f", "margin": 0, "marginBottom": "8px" }
+    },
+    {
+      "id": "guide-c6-desc",
+      "component": "typography",
+      "type": "text",
+      "content": "Repeater 遍历数组数据，为每一项渲染子组件模板。$current 访问当前项数据，keyField 指定唯一标识字段以优化渲染性能。",
+      "style": { "fontSize": "17px", "fontWeight": 400, "lineHeight": 1.47, "color": "#86868b", "margin": 0, "marginBottom": "16px" }
+    },
+    {
+      "id": "guide-c6-code",
+      "component": "box",
+      "style": { "backgroundColor": "#1d1d1f", "borderRadius": "12px", "padding": "20px", "marginBottom": "16px" },
+      "children": ["guide-c6-code-text"]
+    },
+    {
+      "id": "guide-c6-code-text",
+      "component": "typography",
+      "type": "text",
+      "content": "{ \"component\": \"repeater\",\n  \"data\": { \"path\": \"/todos\" },\n  \"keyField\": \"id\",\n  \"children\": [\"todo-item\"] }\n\n// 子模板中用 $current\n{ \"id\": \"todo-item\",\n  \"component\": \"typography\",\n  \"content\": \"$​{$current.text}\" }",
+      "style": { "fontSize": "14px", "fontWeight": 400, "lineHeight": 1.6, "color": "#e0e0e0", "margin": 0, "fontFamily": "ui-monospace, 'SF Mono', Monaco, 'Cascadia Code', monospace", "whiteSpace": "pre" }
+    },
+    {
+      "id": "guide-c6-alert",
+      "component": "alert",
+      "status": "warning",
+      "title": "Repeater 内删除操作必须用字段值比较（如 x.id !== $current.id），不能用引用比较（item !== $current），因为 data store 更新时会浅拷贝对象。",
+      "showIcon": true,
+      "style": { "borderRadius": "12px" }
+    },
+
+    { "id": "__comment_advanced", "component": "box", "visible": false },
+
+    {
+      "id": "guide-advanced",
+      "component": "box",
+      "domId": "guide-advanced-section",
+      "align": "center",
+      "style": { "backgroundColor": "#272729", "padding": "80px 24px" },
+      "children": ["guide-adv-title", "guide-adv-inner"],
+      "animation": "fade"
+    },
+    {
+      "id": "guide-adv-title",
+      "component": "typography",
+      "type": "title",
+      "content": "进阶话题",
+      "style": { "fontSize": "40px", "fontWeight": 600, "lineHeight": 1.1, "color": "#ffffff", "margin": 0, "marginBottom": "48px", "textAlign": "center" }
+    },
+    {
+      "id": "guide-adv-inner",
+      "component": "box",
+      "style": { "maxWidth": "680px", "width": "100%" },
+      "spacing": 0,
+      "children": [
+        "guide-a1-title", "guide-a1-desc", "guide-a1-code",
+        "guide-a1-divider",
+        "guide-a2-title", "guide-a2-desc", "guide-a2-code1", "guide-a2-code2-label", "guide-a2-code2",
+        "guide-a2-divider",
+        "guide-a3-title", "guide-a3-desc", "guide-a3-code",
+        "guide-a3-divider",
+        "guide-a4-title", "guide-a4-desc", "guide-a4-code"
+      ]
+    },
+
+    {
+      "id": "guide-a1-title",
+      "component": "typography",
+      "type": "title",
+      "content": "响应式布局",
+      "style": { "fontSize": "21px", "fontWeight": 600, "lineHeight": 1.19, "color": "#ffffff", "margin": 0, "marginBottom": "8px" }
+    },
+    {
+      "id": "guide-a1-desc",
+      "component": "typography",
+      "type": "text",
+      "content": "Row/Col 栅格系统，支持 xs / sm / md / lg / xl / xxl 六个断点。Col 的 span 值为 1-24，自动换行。",
+      "style": { "fontSize": "17px", "fontWeight": 400, "lineHeight": 1.47, "color": "#86868b", "margin": 0, "marginBottom": "16px" }
+    },
+    {
+      "id": "guide-a1-code",
+      "component": "box",
+      "style": { "backgroundColor": "#1d1d1f", "borderRadius": "12px", "padding": "20px" },
+      "children": ["guide-a1-code-text"]
+    },
+    {
+      "id": "guide-a1-code-text",
+      "component": "typography",
+      "type": "text",
+      "content": "{ \"component\": \"row\", \"gutter\": [16, 16],\n  \"children\": [\"col-1\", \"col-2\", \"col-3\"] }\n\n// 每列：桌面 8 格，平板 12 格，手机 24 格\n{ \"component\": \"col\",\n  \"xs\": 24, \"md\": 12, \"lg\": 8,\n  \"children\": [\"card\"] }",
+      "style": { "fontSize": "14px", "fontWeight": 400, "lineHeight": 1.6, "color": "#e0e0e0", "margin": 0, "fontFamily": "ui-monospace, 'SF Mono', Monaco, 'Cascadia Code', monospace", "whiteSpace": "pre" }
+    },
+    {
+      "id": "guide-a1-divider",
+      "component": "divider",
+      "style": { "margin": "32px 0", "borderColor": "rgba(255,255,255,0.12)" }
+    },
+
+    {
+      "id": "guide-a2-title",
+      "component": "typography",
+      "type": "title",
+      "content": "动画系统",
+      "style": { "fontSize": "21px", "fontWeight": 600, "lineHeight": 1.19, "color": "#ffffff", "margin": 0, "marginBottom": "8px" }
+    },
+    {
+      "id": "guide-a2-desc",
+      "component": "typography",
+      "type": "text",
+      "content": "6 种内置预设：fade / slideUp / slideDown / slideLeft / slideRight / zoom。安装 framer-motion 后自动启用物理弹簧动画。",
+      "style": { "fontSize": "17px", "fontWeight": 400, "lineHeight": 1.47, "color": "#86868b", "margin": 0, "marginBottom": "16px" }
+    },
+    {
+      "id": "guide-a2-code1",
+      "component": "box",
+      "style": { "backgroundColor": "#1d1d1f", "borderRadius": "12px", "padding": "20px", "marginBottom": "12px" },
+      "children": ["guide-a2-code1-text"]
+    },
+    {
+      "id": "guide-a2-code1-text",
+      "component": "typography",
+      "type": "text",
+      "content": "// 简写 — 使用预设名\n\"animation\": \"fade\"",
+      "style": { "fontSize": "14px", "fontWeight": 400, "lineHeight": 1.6, "color": "#e0e0e0", "margin": 0, "fontFamily": "ui-monospace, 'SF Mono', Monaco, 'Cascadia Code', monospace", "whiteSpace": "pre" }
+    },
+    {
+      "id": "guide-a2-code2-label",
+      "component": "typography",
+      "type": "text",
+      "content": "带参数的完整写法：",
+      "style": { "fontSize": "14px", "fontWeight": 400, "lineHeight": 1.43, "color": "#86868b", "margin": 0, "marginBottom": "8px" }
+    },
+    {
+      "id": "guide-a2-code2",
+      "component": "box",
+      "style": { "backgroundColor": "#1d1d1f", "borderRadius": "12px", "padding": "20px" },
+      "children": ["guide-a2-code2-text"]
+    },
+    {
+      "id": "guide-a2-code2-text",
+      "component": "typography",
+      "type": "text",
+      "content": "\"animation\": {\n  \"preset\": \"slideUp\",\n  \"duration\": 0.6,\n  \"delay\": 0.2\n}",
+      "style": { "fontSize": "14px", "fontWeight": 400, "lineHeight": 1.6, "color": "#e0e0e0", "margin": 0, "fontFamily": "ui-monospace, 'SF Mono', Monaco, 'Cascadia Code', monospace", "whiteSpace": "pre" }
+    },
+    {
+      "id": "guide-a2-divider",
+      "component": "divider",
+      "style": { "margin": "32px 0", "borderColor": "rgba(255,255,255,0.12)" }
+    },
+
+    {
+      "id": "guide-a3-title",
+      "component": "typography",
+      "type": "title",
+      "content": "表单校验",
+      "style": { "fontSize": "21px", "fontWeight": 600, "lineHeight": 1.19, "color": "#ffffff", "margin": 0, "marginBottom": "8px" }
+    },
+    {
+      "id": "guide-a3-desc",
+      "component": "typography",
+      "type": "text",
+      "content": "Form 容器管理校验状态。给输入组件配置 rules 数组，通过 submitButtonId 关联提交按钮 — 校验不通过时按钮自动禁用。",
+      "style": { "fontSize": "17px", "fontWeight": 400, "lineHeight": 1.47, "color": "#86868b", "margin": 0, "marginBottom": "16px" }
+    },
+    {
+      "id": "guide-a3-code",
+      "component": "box",
+      "style": { "backgroundColor": "#1d1d1f", "borderRadius": "12px", "padding": "20px" },
+      "children": ["guide-a3-code-text"]
+    },
+    {
+      "id": "guide-a3-code-text",
+      "component": "typography",
+      "type": "text",
+      "content": "{ \"component\": \"form\",\n  \"submitButtonId\": \"submit-btn\",\n  \"children\": [\"email-input\", \"submit-btn\"] }\n\n{ \"id\": \"email-input\",\n  \"component\": \"input\",\n  \"label\": \"邮箱\",\n  \"rules\": [\n    { \"required\": true,\n      \"message\": \"请输入邮箱\" },\n    { \"type\": \"email\",\n      \"message\": \"邮箱格式不正确\" }\n  ] }",
+      "style": { "fontSize": "14px", "fontWeight": 400, "lineHeight": 1.6, "color": "#e0e0e0", "margin": 0, "fontFamily": "ui-monospace, 'SF Mono', Monaco, 'Cascadia Code', monospace", "whiteSpace": "pre" }
+    },
+    {
+      "id": "guide-a3-divider",
+      "component": "divider",
+      "style": { "margin": "32px 0", "borderColor": "rgba(255,255,255,0.12)" }
+    },
+
+    {
+      "id": "guide-a4-title",
+      "component": "typography",
+      "type": "title",
+      "content": "样式系统",
+      "style": { "fontSize": "21px", "fontWeight": 600, "lineHeight": 1.19, "color": "#ffffff", "margin": 0, "marginBottom": "8px" }
+    },
+    {
+      "id": "guide-a4-desc",
+      "component": "typography",
+      "type": "text",
+      "content": "双轨制：style 对象用于精确值和动态表达式，className 字符串用于 Tailwind 工具类、响应式和 hover 状态。两者可以同时使用。",
+      "style": { "fontSize": "17px", "fontWeight": 400, "lineHeight": 1.47, "color": "#86868b", "margin": 0, "marginBottom": "16px" }
+    },
+    {
+      "id": "guide-a4-code",
+      "component": "box",
+      "style": { "backgroundColor": "#1d1d1f", "borderRadius": "12px", "padding": "20px" },
+      "children": ["guide-a4-code-text"]
+    },
+    {
+      "id": "guide-a4-code-text",
+      "component": "typography",
+      "type": "text",
+      "content": "// style — 精确值 + 动态表达式\n\"style\": {\n  \"padding\": \"16px\",\n  \"color\": \"$​{$root.active ? '#0066cc' : '#86868b'}\"\n}\n\n// className — Tailwind + 响应式 + hover\n\"className\": \"rounded-xl hover:shadow-lg\n  transition-shadow md:p-8 p-4\"",
+      "style": { "fontSize": "14px", "fontWeight": 400, "lineHeight": 1.6, "color": "#e0e0e0", "margin": 0, "fontFamily": "ui-monospace, 'SF Mono', Monaco, 'Cascadia Code', monospace", "whiteSpace": "pre" }
+    },
+
+    { "id": "__comment_faq", "component": "box", "visible": false },
+
+    {
+      "id": "guide-faq",
+      "component": "box",
+      "domId": "guide-faq-section",
+      "align": "center",
+      "style": { "backgroundColor": "#f5f5f7", "padding": "80px 24px" },
+      "children": ["guide-faq-title", "guide-faq-collapse"],
+      "animation": "fade"
+    },
+    {
+      "id": "guide-faq-title",
+      "component": "typography",
+      "type": "title",
+      "content": "常见问题",
+      "style": { "fontSize": "40px", "fontWeight": 600, "lineHeight": 1.1, "color": "#1d1d1f", "margin": 0, "marginBottom": "48px", "textAlign": "center" }
+    },
+    {
+      "id": "guide-faq-collapse",
+      "component": "collapse",
+      "style": { "maxWidth": "680px", "width": "100%", "backgroundColor": "transparent" },
+      "options": [
+        { "label": "faui 支持哪些 React 版本？", "value": "react", "children": ["guide-faq-a1"] },
+        { "label": "必须用 Ant Design 吗？", "value": "antd", "children": ["guide-faq-a2"] },
+        { "label": "动画需要额外安装什么？", "value": "animation", "children": ["guide-faq-a3"] },
+        { "label": "表达式里能调用自定义函数吗？", "value": "expression", "children": ["guide-faq-a4"] },
+        { "label": "如何自定义组件注册？", "value": "custom", "children": ["guide-faq-a5"] },
+        { "label": "Schema 的 id 有什么命名规范？", "value": "naming", "children": ["guide-faq-a6"] }
+      ]
+    },
+    {
+      "id": "guide-faq-a1",
+      "component": "typography",
+      "type": "text",
+      "content": "React 18 及以上版本。faui 使用了 React 18 的并发特性，不支持 React 17 及更早版本。",
+      "style": { "fontSize": "15px", "fontWeight": 400, "lineHeight": 1.6, "color": "#86868b", "margin": 0 }
+    },
+    {
+      "id": "guide-faq-a2",
+      "component": "typography",
+      "type": "text",
+      "content": "是的，faui 的 full 版本基于 Ant Design 组件库。antd 和 dayjs 是 peer dependency，需要一起安装。",
+      "style": { "fontSize": "15px", "fontWeight": 400, "lineHeight": 1.6, "color": "#86868b", "margin": 0 }
+    },
+    {
+      "id": "guide-faq-a3",
+      "component": "typography",
+      "type": "text",
+      "content": "faui 内置了 CSS transition 动画，无需额外安装。如果需要更丰富的物理弹簧动画效果，可以安装 framer-motion — faui 会自动检测并启用。",
+      "style": { "fontSize": "15px", "fontWeight": 400, "lineHeight": 1.6, "color": "#86868b", "margin": 0 }
+    },
+    {
+      "id": "guide-faq-a4",
+      "component": "typography",
+      "type": "text",
+      "content": "表达式在安全沙箱中运行，不能直接调用外部函数。但你可以通过 dataModel 传入计算好的值，或者使用 Action 体系中的 http_proxy 调用后端接口。",
+      "style": { "fontSize": "15px", "fontWeight": 400, "lineHeight": 1.6, "color": "#86868b", "margin": 0 }
+    },
+    {
+      "id": "guide-faq-a5",
+      "component": "typography",
+      "type": "text",
+      "content": "通过 ComponentRegistry 注册自定义组件。创建一个 React 组件，然后调用 registry.register('my-component', MyComponent) 即可在 schema 中使用。",
+      "style": { "fontSize": "15px", "fontWeight": 400, "lineHeight": 1.6, "color": "#86868b", "margin": 0 }
+    },
+    {
+      "id": "guide-faq-a6",
+      "component": "typography",
+      "type": "text",
+      "content": "id 在整个 schema 中必须唯一。建议使用 kebab-case 命名（如 user-profile-card），并按页面或模块加前缀避免冲突（如 home-hero-title）。",
+      "style": { "fontSize": "15px", "fontWeight": 400, "lineHeight": 1.6, "color": "#86868b", "margin": 0 }
+    }
+  ],
+  "dataModel": {
+    "guide": {}
+  },
+  "root": ["guide-root"]
+}

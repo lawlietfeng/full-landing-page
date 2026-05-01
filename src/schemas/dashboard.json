@@ -1,0 +1,371 @@
+{
+  "components": [
+    {
+      "id": "dash-root",
+      "component": "box",
+      "children": ["dash-hero", "dash-body"]
+    },
+    {
+      "id": "dash-hero",
+      "component": "box",
+      "align": "center",
+      "style": { "backgroundColor": "#272729", "padding": "56px 24px 40px" },
+      "children": ["dash-hero-eyebrow", "dash-hero-title", "dash-hero-subtitle", "dash-hero-desc"],
+      "animation": "fade"
+    },
+    {
+      "id": "dash-hero-eyebrow",
+      "component": "typography",
+      "type": "text",
+      "content": "DASHBOARD",
+      "style": { "fontSize": "12px", "fontWeight": 500, "lineHeight": 1.33, "color": "#86868b", "margin": 0, "marginBottom": "12px", "textAlign": "center", "letterSpacing": "1.5px", "textTransform": "uppercase" }
+    },
+    {
+      "id": "dash-hero-title",
+      "component": "typography",
+      "type": "title",
+      "content": "数据大屏",
+      "style": { "fontSize": "40px", "fontWeight": 600, "lineHeight": 1.1, "color": "#ffffff", "margin": 0, "marginBottom": "12px", "textAlign": "center" }
+    },
+    {
+      "id": "dash-hero-subtitle",
+      "component": "typography",
+      "type": "text",
+      "content": "ECharts 驱动的可视化仪表盘，6 种图表类型一览",
+      "style": { "fontSize": "17px", "fontWeight": 400, "lineHeight": 1.47, "color": "#86868b", "margin": 0, "textAlign": "center" }
+    },
+    {
+      "id": "dash-hero-desc",
+      "component": "typography",
+      "type": "text",
+      "content": "一份 JSON 就能搭建完整的数据分析界面",
+      "style": { "fontSize": "14px", "fontWeight": 400, "lineHeight": 1.43, "color": "#6e6e73", "margin": 0, "marginTop": "8px", "textAlign": "center" }
+    },
+
+    {
+      "id": "dash-body",
+      "component": "box",
+      "on_mount": [
+        { "action": "update_data", "path": "/dashboard/loading", "value": true },
+        {
+          "action": "http_proxy",
+          "payload": { "http_config": { "method": "GET", "path": "/api/dashboard" } },
+          "on_success": [
+            { "action": "update_data", "path": "/dashboard/kpi", "value": "${$result.kpi}" },
+            { "action": "update_data", "path": "/dashboard/monthly", "value": "${$result.monthly}" },
+            { "action": "update_data", "path": "/dashboard/categories", "value": "${$result.categories}" },
+            { "action": "update_data", "path": "/dashboard/quarterly", "value": "${$result.quarterly}" },
+            { "action": "update_data", "path": "/dashboard/channels", "value": "${$result.channels}" },
+            { "action": "update_data", "path": "/dashboard/gauges", "value": "${$result.gauges}" },
+            { "action": "update_data", "path": "/dashboard/loading", "value": false }
+          ],
+          "on_error": [
+            { "action": "update_data", "path": "/dashboard/loading", "value": false }
+          ]
+        }
+      ],
+      "children": ["dash-spin"]
+    },
+    {
+      "id": "dash-spin",
+      "component": "spin",
+      "spinning": "${$root.dashboard.loading}",
+      "children": ["dash-kpi-section", "dash-charts-1", "dash-charts-2", "dash-charts-3", "dash-gauges-section"]
+    },
+
+    {
+      "id": "dash-kpi-section",
+      "component": "box",
+      "style": { "backgroundColor": "#ffffff", "padding": "60px 24px" },
+      "children": ["dash-kpi-inner"],
+      "animation": "fade"
+    },
+    {
+      "id": "dash-kpi-inner",
+      "component": "row",
+      "gutter": [24, 24],
+      "justify": "center",
+      "style": { "maxWidth": "900px", "margin": "0 auto" },
+      "children": ["dash-kpi-col-1", "dash-kpi-col-2", "dash-kpi-col-3", "dash-kpi-col-4"]
+    },
+    { "id": "dash-kpi-col-1", "component": "col", "xs": 12, "md": 6, "children": ["dash-kpi-revenue"] },
+    { "id": "dash-kpi-col-2", "component": "col", "xs": 12, "md": 6, "children": ["dash-kpi-orders"] },
+    { "id": "dash-kpi-col-3", "component": "col", "xs": 12, "md": 6, "children": ["dash-kpi-users"] },
+    { "id": "dash-kpi-col-4", "component": "col", "xs": 12, "md": 6, "children": ["dash-kpi-conversion"] },
+    {
+      "id": "dash-kpi-revenue",
+      "component": "statistic",
+      "title": "总营收",
+      "content": "¥2,847,600",
+      "countUp": 1800,
+      "valueStyle": { "fontSize": "36px", "fontWeight": 600, "color": "#1d1d1f", "letterSpacing": "-0.5px" },
+      "style": { "textAlign": "center" }
+    },
+    {
+      "id": "dash-kpi-orders",
+      "component": "statistic",
+      "title": "订单量",
+      "content": "1,247",
+      "countUp": 1500,
+      "valueStyle": { "fontSize": "36px", "fontWeight": 600, "color": "#1d1d1f", "letterSpacing": "-0.5px" },
+      "style": { "textAlign": "center" }
+    },
+    {
+      "id": "dash-kpi-users",
+      "component": "statistic",
+      "title": "用户数",
+      "content": "8,532",
+      "countUp": 1500,
+      "valueStyle": { "fontSize": "36px", "fontWeight": 600, "color": "#1d1d1f", "letterSpacing": "-0.5px" },
+      "style": { "textAlign": "center" }
+    },
+    {
+      "id": "dash-kpi-conversion",
+      "component": "statistic",
+      "title": "转化率",
+      "content": "23.6%",
+      "countUp": 1200,
+      "valueStyle": { "fontSize": "36px", "fontWeight": 600, "color": "#1d1d1f", "letterSpacing": "-0.5px" },
+      "style": { "textAlign": "center" }
+    },
+    {
+      "id": "dash-charts-1",
+      "component": "box",
+      "style": { "backgroundColor": "#272729", "padding": "60px 24px" },
+      "children": ["dash-charts-1-inner"],
+      "animation": "fade"
+    },
+    {
+      "id": "dash-charts-1-inner",
+      "component": "row",
+      "gutter": [24, 24],
+      "style": { "width": "100%", "maxWidth": "1100px", "margin": "0 auto" },
+      "children": ["dash-charts-1-col-1", "dash-charts-1-col-2"]
+    },
+    { "id": "dash-charts-1-col-1", "component": "col", "xs": 24, "md": 14, "children": ["dash-area-chart"] },
+    { "id": "dash-charts-1-col-2", "component": "col", "xs": 24, "md": 10, "children": ["dash-pie-chart"] },
+    {
+      "id": "dash-area-chart",
+      "component": "chart",
+      "data": { "path": "/dashboard/monthly" },
+      "chartType": "area",
+      "xField": "month",
+      "yField": ["revenue", "cost", "profit"],
+      "height": 360,
+      "smooth": true,
+      "title": "营收趋势",
+      "theme": "dark",
+      "style": { "backgroundColor": "transparent" }
+    },
+    {
+      "id": "dash-pie-chart",
+      "component": "chart",
+      "data": { "path": "/dashboard/categories" },
+      "chartType": "pie",
+      "xField": "name",
+      "yField": "value",
+      "height": 360,
+      "title": "品类占比",
+      "theme": "dark",
+      "style": { "backgroundColor": "transparent" }
+    },
+
+    {
+      "id": "dash-charts-2",
+      "component": "box",
+      "style": { "backgroundColor": "#ffffff", "padding": "60px 24px" },
+      "children": ["dash-charts-2-inner"],
+      "animation": "fade"
+    },
+    {
+      "id": "dash-charts-2-inner",
+      "component": "row",
+      "gutter": [24, 24],
+      "style": { "width": "100%", "maxWidth": "1100px", "margin": "0 auto" },
+      "children": ["dash-charts-2-col-1", "dash-charts-2-col-2"]
+    },
+    { "id": "dash-charts-2-col-1", "component": "col", "xs": 24, "md": 12, "children": ["dash-bar-chart"] },
+    { "id": "dash-charts-2-col-2", "component": "col", "xs": 24, "md": 12, "children": ["dash-radar-chart"] },
+    {
+      "id": "dash-bar-chart",
+      "component": "chart",
+      "data": { "path": "/dashboard/quarterly" },
+      "chartType": "bar",
+      "xField": "quarter",
+      "yField": ["online", "offline", "wholesale"],
+      "height": 360,
+      "title": "季度渠道对比"
+    },
+    {
+      "id": "dash-radar-chart",
+      "component": "chart",
+      "data": { "path": "/dashboard/channels" },
+      "chartType": "radar",
+      "height": 360,
+      "title": "渠道能力分析",
+      "option": {
+        "title": { "text": "渠道能力分析", "left": "center", "textStyle": { "color": "#1d1d1f", "fontSize": 14, "fontWeight": 500 } },
+        "legend": { "bottom": 0, "textStyle": { "color": "#86868b" } },
+        "radar": {
+          "indicator": [
+            { "name": "品牌知名度", "max": 100 },
+            { "name": "用户活跃度", "max": 100 },
+            { "name": "转化效率", "max": 100 },
+            { "name": "客户满意度", "max": 100 },
+            { "name": "复购率", "max": 100 }
+          ],
+          "axisLine": { "lineStyle": { "color": "rgba(0,0,0,0.08)" } },
+          "splitLine": { "lineStyle": { "color": "rgba(0,0,0,0.06)" } },
+          "splitArea": { "show": false }
+        },
+        "series": [{
+          "type": "radar",
+          "data": [
+            { "value": [85, 78, 72, 88, 65], "name": "线上", "areaStyle": { "opacity": 0.15 } },
+            { "value": [60, 55, 68, 82, 70], "name": "线下", "areaStyle": { "opacity": 0.15 } },
+            { "value": [90, 82, 58, 75, 48], "name": "社交", "areaStyle": { "opacity": 0.15 } }
+          ]
+        }],
+        "color": ["#0066cc", "#34c759", "#ff9500"]
+      }
+    },
+
+    {
+      "id": "dash-charts-3",
+      "component": "box",
+      "style": { "backgroundColor": "#272729", "padding": "60px 24px" },
+      "children": ["dash-charts-3-inner"],
+      "animation": "fade"
+    },
+    {
+      "id": "dash-charts-3-inner",
+      "component": "box",
+      "style": { "width": "100%", "maxWidth": "1100px", "margin": "0 auto" },
+      "children": ["dash-combo-chart"]
+    },
+    {
+      "id": "dash-combo-chart",
+      "component": "chart",
+      "height": 400,
+      "option": {
+        "title": { "text": "月度销售额 vs 利润", "left": "center", "textStyle": { "color": "#ffffff", "fontSize": 14, "fontWeight": 500 } },
+        "tooltip": { "trigger": "axis", "backgroundColor": "rgba(29,29,31,0.9)", "borderColor": "rgba(255,255,255,0.1)", "textStyle": { "color": "#ffffff" } },
+        "legend": { "bottom": 0, "textStyle": { "color": "#86868b" } },
+        "grid": { "left": 60, "right": 60, "top": 50, "bottom": 40 },
+        "xAxis": { "type": "category", "data": ["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"], "axisLabel": { "color": "#86868b" }, "axisLine": { "lineStyle": { "color": "rgba(255,255,255,0.1)" } } },
+        "yAxis": [
+          { "type": "value", "name": "万元", "nameTextStyle": { "color": "#86868b" }, "axisLabel": { "color": "#86868b" }, "splitLine": { "lineStyle": { "color": "rgba(255,255,255,0.06)" } } },
+          { "type": "value", "name": "利润", "nameTextStyle": { "color": "#86868b" }, "axisLabel": { "color": "#86868b" }, "splitLine": { "show": false } }
+        ],
+        "series": [
+          { "name": "营收", "type": "bar", "data": [186,205,237,218,252,241,268,289,275,312,298,335], "itemStyle": { "color": "#0066cc", "borderRadius": [4,4,0,0] } },
+          { "name": "成本", "type": "bar", "data": [124,131,142,138,149,145,155,162,158,171,165,178], "itemStyle": { "color": "rgba(0,102,204,0.3)", "borderRadius": [4,4,0,0] } },
+          { "name": "利润", "type": "line", "yAxisIndex": 1, "data": [62,74,95,80,103,96,113,127,117,141,133,157], "smooth": true, "itemStyle": { "color": "#34c759" }, "lineStyle": { "width": 2 } }
+        ],
+        "color": ["#0066cc", "rgba(0,102,204,0.3)", "#34c759"]
+      }
+    },
+
+    {
+      "id": "dash-gauges-section",
+      "component": "box",
+      "style": { "backgroundColor": "#ffffff", "padding": "60px 24px" },
+      "children": ["dash-gauges-inner"],
+      "animation": "fade"
+    },
+    {
+      "id": "dash-gauges-inner",
+      "component": "row",
+      "gutter": [24, 24],
+      "justify": "center",
+      "style": { "width": "100%", "maxWidth": "900px", "margin": "0 auto" },
+      "children": ["dash-gauge-col-1", "dash-gauge-col-2", "dash-gauge-col-3"]
+    },
+    { "id": "dash-gauge-col-1", "component": "col", "xs": 24, "md": 8, "children": ["dash-gauge-completion"] },
+    { "id": "dash-gauge-col-2", "component": "col", "xs": 24, "md": 8, "children": ["dash-gauge-satisfaction"] },
+    { "id": "dash-gauge-col-3", "component": "col", "xs": 24, "md": 8, "children": ["dash-gauge-growth"] },
+    {
+      "id": "dash-gauge-completion",
+      "component": "chart",
+      "chartType": "gauge",
+      "height": 260,
+      "option": {
+        "series": [{
+          "type": "gauge",
+          "startAngle": 210,
+          "endAngle": -30,
+          "min": 0,
+          "max": 100,
+          "progress": { "show": true, "width": 14, "itemStyle": { "color": "#0066cc" } },
+          "axisLine": { "lineStyle": { "width": 14, "color": [[1, "#f0f0f0"]] } },
+          "axisTick": { "show": false },
+          "splitLine": { "show": false },
+          "axisLabel": { "show": false },
+          "pointer": { "show": false },
+          "title": { "offsetCenter": [0, "70%"], "fontSize": 14, "color": "#86868b" },
+          "detail": { "offsetCenter": [0, "30%"], "fontSize": 28, "fontWeight": 600, "color": "#1d1d1f", "formatter": "{value}%" },
+          "data": [{ "value": 87.5, "name": "完成率" }]
+        }]
+      }
+    },
+    {
+      "id": "dash-gauge-satisfaction",
+      "component": "chart",
+      "chartType": "gauge",
+      "height": 260,
+      "option": {
+        "series": [{
+          "type": "gauge",
+          "startAngle": 210,
+          "endAngle": -30,
+          "min": 0,
+          "max": 100,
+          "progress": { "show": true, "width": 14, "itemStyle": { "color": "#34c759" } },
+          "axisLine": { "lineStyle": { "width": 14, "color": [[1, "#f0f0f0"]] } },
+          "axisTick": { "show": false },
+          "splitLine": { "show": false },
+          "axisLabel": { "show": false },
+          "pointer": { "show": false },
+          "title": { "offsetCenter": [0, "70%"], "fontSize": 14, "color": "#86868b" },
+          "detail": { "offsetCenter": [0, "30%"], "fontSize": 28, "fontWeight": 600, "color": "#1d1d1f", "formatter": "{value}%" },
+          "data": [{ "value": 92.3, "name": "满意度" }]
+        }]
+      }
+    },
+    {
+      "id": "dash-gauge-growth",
+      "component": "chart",
+      "chartType": "gauge",
+      "height": 260,
+      "option": {
+        "series": [{
+          "type": "gauge",
+          "startAngle": 210,
+          "endAngle": -30,
+          "min": 0,
+          "max": 100,
+          "progress": { "show": true, "width": 14, "itemStyle": { "color": "#ff9500" } },
+          "axisLine": { "lineStyle": { "width": 14, "color": [[1, "#f0f0f0"]] } },
+          "axisTick": { "show": false },
+          "splitLine": { "show": false },
+          "axisLabel": { "show": false },
+          "pointer": { "show": false },
+          "title": { "offsetCenter": [0, "70%"], "fontSize": 14, "color": "#86868b" },
+          "detail": { "offsetCenter": [0, "30%"], "fontSize": 28, "fontWeight": 600, "color": "#1d1d1f", "formatter": "{value}%" },
+          "data": [{ "value": 34.8, "name": "增长率" }]
+        }]
+      }
+    }
+  ],
+  "dataModel": {
+    "dashboard": {
+      "loading": false,
+      "kpi": {},
+      "monthly": [],
+      "categories": [],
+      "quarterly": [],
+      "channels": {},
+      "gauges": {}
+    }
+  }
+}

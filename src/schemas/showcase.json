@@ -1,0 +1,1080 @@
+{
+  "components": [
+    {
+      "id": "showcase-root",
+      "component": "box",
+      "children": ["showcase-hero", "showcase-demos", "showcase-oa"]
+    },
+
+    {
+      "id": "showcase-hero",
+      "component": "box",
+      "align": "center",
+      "style": { "backgroundColor": "#272729", "padding": "56px 24px 40px" },
+      "children": ["showcase-hero-eyebrow", "showcase-hero-title", "showcase-hero-subtitle", "showcase-hero-desc"],
+      "animation": "fade"
+    },
+    {
+      "id": "showcase-hero-eyebrow",
+      "component": "typography",
+      "type": "text",
+      "content": "SHOWCASE",
+      "style": { "fontSize": "12px", "fontWeight": 500, "lineHeight": 1.33, "color": "#86868b", "margin": 0, "marginBottom": "12px", "textAlign": "center", "letterSpacing": "1.5px", "textTransform": "uppercase" }
+    },
+    {
+      "id": "showcase-hero-title",
+      "component": "typography",
+      "type": "title",
+      "content": "交互式演示",
+      "style": { "fontSize": "40px", "fontWeight": 600, "lineHeight": 1.1, "color": "#ffffff", "margin": 0, "marginBottom": "12px", "textAlign": "center" }
+    },
+    {
+      "id": "showcase-hero-subtitle",
+      "component": "typography",
+      "type": "text",
+      "content": "每一个 Demo 都是纯 JSON 驱动，你可以直接交互体验 FAUI 的真实能力",
+      "style": { "fontSize": "17px", "fontWeight": 400, "lineHeight": 1.47, "color": "#86868b", "margin": 0, "textAlign": "center" }
+    },
+    {
+      "id": "showcase-hero-desc",
+      "component": "typography",
+      "type": "text",
+      "content": "表单联动、列表增删、条件渲染、动画编排 — 所见即所得",
+      "style": { "fontSize": "14px", "fontWeight": 400, "lineHeight": 1.43, "color": "#6e6e73", "margin": 0, "marginTop": "8px", "textAlign": "center" }
+    },
+
+    {
+      "id": "showcase-demos",
+      "component": "box",
+      "align": "center",
+      "style": { "backgroundColor": "#f5f5f7", "padding": "48px 24px 80px" },
+      "children": ["showcase-tabs-wrap"]
+    },
+    {
+      "id": "showcase-tabs-wrap",
+      "component": "box",
+      "style": { "maxWidth": "800px", "width": "100%" },
+      "children": ["showcase-tabs"]
+    },
+    {
+      "id": "showcase-tabs",
+      "component": "tabs",
+      "centered": true,
+      "destroyOnHidden": true,
+      "items": [
+        { "key": "expr", "label": "表达式联动", "children": ["demo1-card"] },
+        { "key": "cond", "label": "条件渲染", "children": ["demo2-card"] },
+        { "key": "form", "label": "表单校验", "children": ["demo3-card"] },
+        { "key": "list", "label": "数据列表", "children": ["demo4-card"] },
+        { "key": "anim", "label": "动画效果", "children": ["demo5-card"] },
+        { "key": "calc", "label": "数据计算", "children": ["demo6-card"] }
+      ]
+    },
+
+    {
+      "id": "demo1-card",
+      "component": "box",
+      "style": { "backgroundColor": "#ffffff", "borderRadius": "18px", "border": "1px solid rgba(0,0,0,0.08)", "padding": "32px", "marginTop": "24px" },
+      "children": ["demo1-title", "demo1-desc", "demo1-divider", "demo1-input", "demo1-result", "demo1-count"]
+    },
+    {
+      "id": "demo1-title",
+      "component": "typography",
+      "type": "title",
+      "content": "实时表达式绑定",
+      "style": { "fontSize": "21px", "fontWeight": 600, "color": "#1d1d1f", "margin": 0, "marginBottom": "6px" }
+    },
+    {
+      "id": "demo1-desc",
+      "component": "typography",
+      "type": "text",
+      "content": "输入框的值通过 ${} 表达式实时绑定到下方文本，颜色随字符数动态变化",
+      "style": { "fontSize": "14px", "fontWeight": 400, "lineHeight": 1.43, "color": "#86868b", "margin": 0 }
+    },
+    {
+      "id": "demo1-divider",
+      "component": "divider",
+      "style": { "margin": "20px 0" }
+    },
+    {
+      "id": "demo1-input",
+      "component": "input",
+      "placeholder": "输入你的名字...",
+      "value": { "path": "/showcase/expr/name" },
+      "style": { "marginBottom": "20px" }
+    },
+    {
+      "id": "demo1-result",
+      "component": "typography",
+      "type": "title",
+      "content": "Hello, ${$root.showcase.expr.name || 'World'} !",
+      "style": {
+        "fontSize": "28px",
+        "fontWeight": 600,
+        "margin": 0,
+        "marginBottom": "8px",
+        "color": "${($root.showcase.expr.name || '').length >= 10 ? '#34c759' : ($root.showcase.expr.name || '').length >= 3 ? '#0066cc' : '#86868b'}"
+      }
+    },
+    {
+      "id": "demo1-count",
+      "component": "typography",
+      "type": "text",
+      "content": "已输入 ${($root.showcase.expr.name || '').length} 个字符 · ${($root.showcase.expr.name || '').length < 3 ? '再输入几个试试' : ($root.showcase.expr.name || '').length < 10 ? '颜色变了！' : '完美！'}",
+      "style": { "fontSize": "14px", "fontWeight": 400, "color": "#86868b", "margin": 0 }
+    },
+
+    {
+      "id": "demo2-card",
+      "component": "box",
+      "style": { "backgroundColor": "#ffffff", "borderRadius": "18px", "border": "1px solid rgba(0,0,0,0.08)", "padding": "32px", "marginTop": "24px" },
+      "children": ["demo2-title", "demo2-desc", "demo2-divider", "demo2-radio", "demo2-condition"]
+    },
+    {
+      "id": "demo2-title",
+      "component": "typography",
+      "type": "title",
+      "content": "条件分支渲染",
+      "style": { "fontSize": "21px", "fontWeight": 600, "color": "#1d1d1f", "margin": 0, "marginBottom": "6px" }
+    },
+    {
+      "id": "demo2-desc",
+      "component": "typography",
+      "type": "text",
+      "content": "Radio 切换视图模式，Condition 组件根据匹配值渲染对应分支",
+      "style": { "fontSize": "14px", "fontWeight": 400, "lineHeight": 1.43, "color": "#86868b", "margin": 0 }
+    },
+    {
+      "id": "demo2-divider",
+      "component": "divider",
+      "style": { "margin": "20px 0" }
+    },
+    {
+      "id": "demo2-radio",
+      "component": "radio",
+      "value": { "path": "/showcase/cond/viewMode" },
+      "options": [
+        { "label": "卡片视图", "value": "card" },
+        { "label": "列表视图", "value": "list" },
+        { "label": "空状态", "value": "empty" }
+      ],
+      "style": { "marginBottom": "20px" }
+    },
+    {
+      "id": "demo2-condition",
+      "component": "condition",
+      "match": "${$root.showcase.cond.viewMode}",
+      "animation": "fade",
+      "cases": {
+        "card": ["demo2-panel-card"],
+        "list": ["demo2-panel-list"],
+        "empty": ["demo2-panel-empty"]
+      }
+    },
+    {
+      "id": "demo2-panel-card",
+      "component": "card",
+      "title": "项目概览",
+      "style": { "borderRadius": "12px" },
+      "children": ["demo2-card-body"]
+    },
+    {
+      "id": "demo2-card-body",
+      "component": "box",
+      "spacing": 8,
+      "children": ["demo2-card-stat", "demo2-card-text"]
+    },
+    {
+      "id": "demo2-card-stat",
+      "component": "statistic",
+      "title": "活跃组件",
+      "content": "67",
+      "suffix": "+",
+      "valueStyle": { "fontSize": "32px", "fontWeight": 600, "color": "#0066cc" }
+    },
+    {
+      "id": "demo2-card-text",
+      "component": "typography",
+      "type": "text",
+      "content": "这是卡片视图，适合展示概览信息和关键指标。",
+      "style": { "fontSize": "14px", "color": "#86868b", "margin": 0 }
+    },
+    {
+      "id": "demo2-panel-list",
+      "component": "box",
+      "spacing": 12,
+      "children": ["demo2-list-1", "demo2-list-2", "demo2-list-3"]
+    },
+    {
+      "id": "demo2-list-1",
+      "component": "box",
+      "layout": "horizontal",
+      "align": "center",
+      "spacing": 12,
+      "style": { "padding": "12px 16px", "backgroundColor": "#f9f9f9", "borderRadius": "8px" },
+      "children": ["demo2-list-tag1", "demo2-list-text1"]
+    },
+    {
+      "id": "demo2-list-tag1",
+      "component": "tag",
+      "content": "布局",
+      "color": "blue"
+    },
+    {
+      "id": "demo2-list-text1",
+      "component": "typography",
+      "type": "text",
+      "content": "Box / Flex / Row / Col / Space",
+      "style": { "fontSize": "14px", "color": "#1d1d1f", "margin": 0 }
+    },
+    {
+      "id": "demo2-list-2",
+      "component": "box",
+      "layout": "horizontal",
+      "align": "center",
+      "spacing": 12,
+      "style": { "padding": "12px 16px", "backgroundColor": "#f9f9f9", "borderRadius": "8px" },
+      "children": ["demo2-list-tag2", "demo2-list-text2"]
+    },
+    {
+      "id": "demo2-list-tag2",
+      "component": "tag",
+      "content": "表单",
+      "color": "green"
+    },
+    {
+      "id": "demo2-list-text2",
+      "component": "typography",
+      "type": "text",
+      "content": "Input / Select / DatePicker / Upload",
+      "style": { "fontSize": "14px", "color": "#1d1d1f", "margin": 0 }
+    },
+    {
+      "id": "demo2-list-3",
+      "component": "box",
+      "layout": "horizontal",
+      "align": "center",
+      "spacing": 12,
+      "style": { "padding": "12px 16px", "backgroundColor": "#f9f9f9", "borderRadius": "8px" },
+      "children": ["demo2-list-tag3", "demo2-list-text3"]
+    },
+    {
+      "id": "demo2-list-tag3",
+      "component": "tag",
+      "content": "反馈",
+      "color": "orange"
+    },
+    {
+      "id": "demo2-list-text3",
+      "component": "typography",
+      "type": "text",
+      "content": "Modal / Drawer / Message / Notification",
+      "style": { "fontSize": "14px", "color": "#1d1d1f", "margin": 0 }
+    },
+    {
+      "id": "demo2-panel-empty",
+      "component": "empty",
+      "description": "暂无数据，请切换其他视图查看",
+      "style": { "padding": "32px 0" }
+    },
+
+    {
+      "id": "demo3-card",
+      "component": "box",
+      "style": { "backgroundColor": "#ffffff", "borderRadius": "18px", "border": "1px solid rgba(0,0,0,0.08)", "padding": "32px", "marginTop": "24px" },
+      "children": ["demo3-title", "demo3-desc", "demo3-divider", "demo3-form"]
+    },
+    {
+      "id": "demo3-title",
+      "component": "typography",
+      "type": "title",
+      "content": "表单校验",
+      "style": { "fontSize": "21px", "fontWeight": 600, "color": "#1d1d1f", "margin": 0, "marginBottom": "6px" }
+    },
+    {
+      "id": "demo3-desc",
+      "component": "typography",
+      "type": "text",
+      "content": "内置 required / email / min 等规则，校验失败阻止提交，通过后弹出 message",
+      "style": { "fontSize": "14px", "fontWeight": 400, "lineHeight": 1.43, "color": "#86868b", "margin": 0 }
+    },
+    {
+      "id": "demo3-divider",
+      "component": "divider",
+      "style": { "margin": "20px 0" }
+    },
+    {
+      "id": "demo3-form",
+      "component": "form",
+      "submitButtonId": "demo3-submit",
+      "layout": "vertical",
+      "children": ["demo3-input-name", "demo3-input-email", "demo3-input-pwd", "demo3-submit"]
+    },
+    {
+      "id": "demo3-input-name",
+      "component": "input",
+      "placeholder": "姓名",
+      "value": { "path": "/showcase/form/name" },
+      "rules": [{ "required": true, "message": "请输入姓名" }],
+      "style": { "marginBottom": "16px" }
+    },
+    {
+      "id": "demo3-input-email",
+      "component": "input",
+      "placeholder": "邮箱",
+      "value": { "path": "/showcase/form/email" },
+      "validateTrigger": "onBlur",
+      "rules": [
+        { "required": true, "message": "请输入邮箱" },
+        { "type": "email", "message": "邮箱格式不正确" }
+      ],
+      "style": { "marginBottom": "16px" }
+    },
+    {
+      "id": "demo3-input-pwd",
+      "component": "input",
+      "placeholder": "密码（至少 6 位）",
+      "value": { "path": "/showcase/form/password" },
+      "rules": [
+        { "required": true, "message": "请输入密码" },
+        { "min": 6, "message": "密码至少 6 个字符" }
+      ],
+      "style": { "marginBottom": "24px" }
+    },
+    {
+      "id": "demo3-submit",
+      "component": "button",
+      "content": "提交",
+      "type": "primary",
+      "style": { "borderRadius": "980px" },
+      "on_tap": [
+        { "action": "message", "payload": { "type": "success", "content": "校验通过，提交成功！" } }
+      ]
+    },
+    {
+      "id": "demo4-card",
+      "component": "box",
+      "style": { "backgroundColor": "#ffffff", "borderRadius": "18px", "border": "1px solid rgba(0,0,0,0.08)", "padding": "32px", "marginTop": "24px" },
+      "children": ["demo4-title", "demo4-desc", "demo4-divider", "demo4-header", "demo4-repeater"]
+    },
+    {
+      "id": "demo4-title",
+      "component": "typography",
+      "type": "title",
+      "content": "数据列表",
+      "style": { "fontSize": "21px", "fontWeight": 600, "color": "#1d1d1f", "margin": 0, "marginBottom": "6px" }
+    },
+    {
+      "id": "demo4-desc",
+      "component": "typography",
+      "type": "text",
+      "content": "Repeater 遍历数组渲染列表，支持动态增删和实时计数",
+      "style": { "fontSize": "14px", "fontWeight": 400, "lineHeight": 1.43, "color": "#86868b", "margin": 0 }
+    },
+    {
+      "id": "demo4-divider",
+      "component": "divider",
+      "style": { "margin": "20px 0" }
+    },
+    {
+      "id": "demo4-header",
+      "component": "flex",
+      "justify": "space-between",
+      "align": "center",
+      "style": { "marginBottom": "16px" },
+      "children": ["demo4-count", "demo4-add-btn"]
+    },
+    {
+      "id": "demo4-count",
+      "component": "typography",
+      "type": "text",
+      "content": "共 ${($root.showcase.list.items || []).length} 项",
+      "style": { "fontSize": "14px", "fontWeight": 600, "color": "#1d1d1f", "margin": 0 }
+    },
+    {
+      "id": "demo4-add-btn",
+      "component": "button",
+      "content": "+ 添加",
+      "style": { "borderRadius": "980px", "fontSize": "13px" },
+      "on_tap": [{
+        "action": "update_data",
+        "path": "/showcase/list/items",
+        "value": "${[...$root.showcase.list.items, { text: '新待办 #' + ($root.showcase.list.items.length + 1), done: false }]}"
+      }]
+    },
+    {
+      "id": "demo4-repeater",
+      "component": "repeater",
+      "data": { "path": "/showcase/list/items" },
+      "keyField": "text",
+      "gap": 10,
+      "animation": "slideUp",
+      "children": ["demo4-item"],
+      "emptyContent": "暂无待办，点击添加"
+    },
+    {
+      "id": "demo4-item",
+      "component": "flex",
+      "align": "center",
+      "justify": "space-between",
+      "style": { "padding": "12px 16px", "backgroundColor": "#f9f9f9", "borderRadius": "8px" },
+      "children": ["demo4-item-left", "demo4-item-del"]
+    },
+    {
+      "id": "demo4-item-left",
+      "component": "flex",
+      "align": "center",
+      "gap": 12,
+      "children": ["demo4-item-check", "demo4-item-text"]
+    },
+    {
+      "id": "demo4-item-check",
+      "component": "checkbox",
+      "value": { "path": "./done" }
+    },
+    {
+      "id": "demo4-item-text",
+      "component": "typography",
+      "type": "text",
+      "content": "${$current.text}",
+      "style": {
+        "fontSize": "14px",
+        "color": "${$current.done ? '#86868b' : '#1d1d1f'}",
+        "textDecoration": "${$current.done ? 'line-through' : 'none'}",
+        "margin": 0
+      }
+    },
+    {
+      "id": "demo4-item-del",
+      "component": "button",
+      "content": "删除",
+      "type": "link",
+      "style": { "color": "#ff3b30", "fontSize": "13px", "padding": 0, "height": "auto" },
+      "on_tap": [{
+        "action": "update_data",
+        "path": "/showcase/list/items",
+        "value": "${$root.showcase.list.items.filter(x => x.text !== $current.text)}"
+      }]
+    },
+    {
+      "id": "demo5-card",
+      "component": "box",
+      "style": { "backgroundColor": "#ffffff", "borderRadius": "18px", "border": "1px solid rgba(0,0,0,0.08)", "padding": "32px", "marginTop": "24px" },
+      "children": ["demo5-title", "demo5-desc", "demo5-divider", "demo5-controls", "demo5-stage"]
+    },
+    {
+      "id": "demo5-title",
+      "component": "typography",
+      "type": "title",
+      "content": "动画预设",
+      "style": { "fontSize": "21px", "fontWeight": 600, "color": "#1d1d1f", "margin": 0, "marginBottom": "6px" }
+    },
+    {
+      "id": "demo5-desc",
+      "component": "typography",
+      "type": "text",
+      "content": "选择预设 → 点击播放，查看 6 种内置动画效果",
+      "style": { "fontSize": "14px", "fontWeight": 400, "lineHeight": 1.43, "color": "#86868b", "margin": 0 }
+    },
+    {
+      "id": "demo5-divider",
+      "component": "divider",
+      "style": { "margin": "20px 0" }
+    },
+    {
+      "id": "demo5-controls",
+      "component": "flex",
+      "align": "center",
+      "gap": 16,
+      "wrap": true,
+      "style": { "marginBottom": "24px" },
+      "children": ["demo5-segmented", "demo5-toggle"]
+    },
+    {
+      "id": "demo5-segmented",
+      "component": "segmented",
+      "value": { "path": "/showcase/anim/preset" },
+      "options": [
+        { "label": "fade", "value": "fade" },
+        { "label": "slideUp", "value": "slideUp" },
+        { "label": "slideDown", "value": "slideDown" },
+        { "label": "slideLeft", "value": "slideLeft" },
+        { "label": "slideRight", "value": "slideRight" },
+        { "label": "zoom", "value": "zoom" }
+      ]
+    },
+    {
+      "id": "demo5-toggle",
+      "component": "button",
+      "content": "${$root.showcase.anim.show ? '隐藏' : '播放'}",
+      "type": "primary",
+      "style": { "borderRadius": "980px" },
+      "on_tap": [{
+        "action": "update_data",
+        "path": "/showcase/anim/show",
+        "value": "${!$root.showcase.anim.show}"
+      }]
+    },
+    {
+      "id": "demo5-stage",
+      "component": "box",
+      "align": "center",
+      "justify": "center",
+      "style": { "minHeight": "120px", "backgroundColor": "#f9f9f9", "borderRadius": "12px" },
+      "children": ["demo5-condition"]
+    },
+    {
+      "id": "demo5-condition",
+      "component": "condition",
+      "match": "${$root.showcase.anim.preset}",
+      "cases": {
+        "fade": ["demo5-box-fade"],
+        "slideUp": ["demo5-box-slideUp"],
+        "slideDown": ["demo5-box-slideDown"],
+        "slideLeft": ["demo5-box-slideLeft"],
+        "slideRight": ["demo5-box-slideRight"],
+        "zoom": ["demo5-box-zoom"]
+      }
+    },
+    {
+      "id": "demo5-box-fade",
+      "component": "box",
+      "align": "center",
+      "justify": "center",
+      "visible": "${$root.showcase.anim.show}",
+      "animation": "fade",
+      "style": { "backgroundColor": "#0066cc", "borderRadius": "12px", "padding": "20px 32px" },
+      "children": ["demo5-box-fade-text"]
+    },
+    {
+      "id": "demo5-box-fade-text",
+      "component": "typography",
+      "type": "text",
+      "content": "fade",
+      "style": { "fontSize": "17px", "fontWeight": 600, "color": "#ffffff", "margin": 0 }
+    },
+    {
+      "id": "demo5-box-slideUp",
+      "component": "box",
+      "align": "center",
+      "justify": "center",
+      "visible": "${$root.showcase.anim.show}",
+      "animation": "slideUp",
+      "style": { "backgroundColor": "#0066cc", "borderRadius": "12px", "padding": "20px 32px" },
+      "children": ["demo5-box-slideUp-text"]
+    },
+    {
+      "id": "demo5-box-slideUp-text",
+      "component": "typography",
+      "type": "text",
+      "content": "slideUp",
+      "style": { "fontSize": "17px", "fontWeight": 600, "color": "#ffffff", "margin": 0 }
+    },
+    {
+      "id": "demo5-box-slideDown",
+      "component": "box",
+      "align": "center",
+      "justify": "center",
+      "visible": "${$root.showcase.anim.show}",
+      "animation": "slideDown",
+      "style": { "backgroundColor": "#0066cc", "borderRadius": "12px", "padding": "20px 32px" },
+      "children": ["demo5-box-slideDown-text"]
+    },
+    {
+      "id": "demo5-box-slideDown-text",
+      "component": "typography",
+      "type": "text",
+      "content": "slideDown",
+      "style": { "fontSize": "17px", "fontWeight": 600, "color": "#ffffff", "margin": 0 }
+    },
+    {
+      "id": "demo5-box-slideLeft",
+      "component": "box",
+      "align": "center",
+      "justify": "center",
+      "visible": "${$root.showcase.anim.show}",
+      "animation": "slideLeft",
+      "style": { "backgroundColor": "#0066cc", "borderRadius": "12px", "padding": "20px 32px" },
+      "children": ["demo5-box-slideLeft-text"]
+    },
+    {
+      "id": "demo5-box-slideLeft-text",
+      "component": "typography",
+      "type": "text",
+      "content": "slideLeft",
+      "style": { "fontSize": "17px", "fontWeight": 600, "color": "#ffffff", "margin": 0 }
+    },
+    {
+      "id": "demo5-box-slideRight",
+      "component": "box",
+      "align": "center",
+      "justify": "center",
+      "visible": "${$root.showcase.anim.show}",
+      "animation": "slideRight",
+      "style": { "backgroundColor": "#0066cc", "borderRadius": "12px", "padding": "20px 32px" },
+      "children": ["demo5-box-slideRight-text"]
+    },
+    {
+      "id": "demo5-box-slideRight-text",
+      "component": "typography",
+      "type": "text",
+      "content": "slideRight",
+      "style": { "fontSize": "17px", "fontWeight": 600, "color": "#ffffff", "margin": 0 }
+    },
+    {
+      "id": "demo5-box-zoom",
+      "component": "box",
+      "align": "center",
+      "justify": "center",
+      "visible": "${$root.showcase.anim.show}",
+      "animation": "zoom",
+      "style": { "backgroundColor": "#0066cc", "borderRadius": "12px", "padding": "20px 32px" },
+      "children": ["demo5-box-zoom-text"]
+    },
+    {
+      "id": "demo5-box-zoom-text",
+      "component": "typography",
+      "type": "text",
+      "content": "zoom",
+      "style": { "fontSize": "17px", "fontWeight": 600, "color": "#ffffff", "margin": 0 }
+    },
+    {
+      "id": "demo6-card",
+      "component": "box",
+      "style": { "backgroundColor": "#ffffff", "borderRadius": "18px", "border": "1px solid rgba(0,0,0,0.08)", "padding": "32px", "marginTop": "24px" },
+      "children": ["demo6-title", "demo6-desc", "demo6-divider", "demo6-select", "demo6-info-row", "demo6-qty-row", "demo6-total-row", "demo6-order-btn"]
+    },
+    {
+      "id": "demo6-title",
+      "component": "typography",
+      "type": "title",
+      "content": "数据计算联动",
+      "style": { "fontSize": "21px", "fontWeight": 600, "color": "#1d1d1f", "margin": 0, "marginBottom": "6px" }
+    },
+    {
+      "id": "demo6-desc",
+      "component": "typography",
+      "type": "text",
+      "content": "Select 切换商品 → on_change 填充单价 → 表达式实时计算总价 → 按钮触发 notification",
+      "style": { "fontSize": "14px", "fontWeight": 400, "lineHeight": 1.43, "color": "#86868b", "margin": 0 }
+    },
+    {
+      "id": "demo6-divider",
+      "component": "divider",
+      "style": { "margin": "20px 0" }
+    },
+    {
+      "id": "demo6-select",
+      "component": "select",
+      "placeholder": "选择商品",
+      "value": { "path": "/showcase/calc/product" },
+      "options": [
+        { "label": "iPhone 16 Pro", "value": "iphone" },
+        { "label": "MacBook Air M4", "value": "macbook" },
+        { "label": "AirPods Pro 3", "value": "airpods" }
+      ],
+      "style": { "width": "100%", "marginBottom": "16px" }
+    },
+    {
+      "id": "demo6-info-row",
+      "component": "flex",
+      "justify": "space-between",
+      "align": "center",
+      "style": { "marginBottom": "12px" },
+      "children": ["demo6-price-label", "demo6-price-value"]
+    },
+    {
+      "id": "demo6-price-label",
+      "component": "typography",
+      "type": "text",
+      "content": "单价",
+      "style": { "fontSize": "14px", "color": "#86868b", "margin": 0 }
+    },
+    {
+      "id": "demo6-price-value",
+      "component": "typography",
+      "type": "text",
+      "content": "${$root.showcase.calc.product ? '¥' + ({'iphone': 7999, 'macbook': 12999, 'airpods': 1799})[$root.showcase.calc.product] : '—'}",
+      "style": { "fontSize": "17px", "fontWeight": 600, "color": "#1d1d1f", "margin": 0 }
+    },
+    {
+      "id": "demo6-qty-row",
+      "component": "flex",
+      "justify": "space-between",
+      "align": "center",
+      "style": { "marginBottom": "12px" },
+      "children": ["demo6-qty-label", "demo6-qty-input"]
+    },
+    {
+      "id": "demo6-qty-label",
+      "component": "typography",
+      "type": "text",
+      "content": "数量",
+      "style": { "fontSize": "14px", "color": "#86868b", "margin": 0 }
+    },
+    {
+      "id": "demo6-qty-input",
+      "component": "inputnumber",
+      "value": { "path": "/showcase/calc/quantity" },
+      "min": 1,
+      "max": 99,
+      "style": { "width": "120px" }
+    },
+    {
+      "id": "demo6-total-row",
+      "component": "flex",
+      "justify": "space-between",
+      "align": "center",
+      "style": { "padding": "16px 0", "borderTop": "1px solid rgba(0,0,0,0.06)", "marginBottom": "20px" },
+      "children": ["demo6-total-label", "demo6-total-value"]
+    },
+    {
+      "id": "demo6-total-label",
+      "component": "typography",
+      "type": "text",
+      "content": "合计",
+      "style": { "fontSize": "14px", "color": "#86868b", "margin": 0 }
+    },
+    {
+      "id": "demo6-total-value",
+      "component": "typography",
+      "type": "title",
+      "content": "${$root.showcase.calc.product ? '¥' + ({'iphone': 7999, 'macbook': 12999, 'airpods': 1799})[$root.showcase.calc.product] * $root.showcase.calc.quantity : '—'}",
+      "style": { "fontSize": "28px", "fontWeight": 600, "color": "#0066cc", "margin": 0 }
+    },
+    {
+      "id": "demo6-order-btn",
+      "component": "button",
+      "content": "下单",
+      "type": "primary",
+      "block": true,
+      "style": { "borderRadius": "980px", "height": "44px", "fontSize": "17px" },
+      "on_tap": [{
+        "action": "notification",
+        "payload": {
+          "type": "success",
+          "message": "下单成功",
+          "description": "您已购买 ${$root.showcase.calc.quantity} 件商品，合计 ¥${({'iphone': 7999, 'macbook': 12999, 'airpods': 1799})[$root.showcase.calc.product] * $root.showcase.calc.quantity}"
+        }
+      }]
+    },
+
+    {
+      "id": "showcase-oa",
+      "component": "box",
+      "align": "center",
+      "style": { "backgroundColor": "#272729", "padding": "80px 24px" },
+      "children": ["oa-section-title", "oa-section-desc", "oa-card"],
+      "animation": "fade"
+    },
+    {
+      "id": "oa-section-title",
+      "component": "typography",
+      "type": "title",
+      "content": "深度场景：迷你 OA 审批",
+      "style": { "fontSize": "40px", "fontWeight": 600, "lineHeight": 1.1, "color": "#ffffff", "margin": 0, "marginBottom": "12px", "textAlign": "center" }
+    },
+    {
+      "id": "oa-section-desc",
+      "component": "typography",
+      "type": "text",
+      "content": "表单 + 条件逻辑 + 表达式计算 + Action 链 + Steps + Timeline — 一个完整的业务流程",
+      "style": { "fontSize": "17px", "fontWeight": 400, "lineHeight": 1.47, "color": "#86868b", "margin": 0, "marginBottom": "48px", "textAlign": "center" }
+    },
+    {
+      "id": "oa-card",
+      "component": "box",
+      "style": { "backgroundColor": "#ffffff", "borderRadius": "18px", "padding": "32px", "maxWidth": "600px", "width": "100%" },
+      "children": ["oa-steps", "oa-divider", "oa-router"]
+    },
+    {
+      "id": "oa-steps",
+      "component": "steps",
+      "current": { "path": "/showcase/oa/step" },
+      "size": "small",
+      "items": [
+        { "title": "填写申请" },
+        { "title": "确认信息" },
+        { "title": "提交完成" }
+      ],
+      "style": { "marginBottom": "8px" }
+    },
+    {
+      "id": "oa-divider",
+      "component": "divider",
+      "style": { "margin": "16px 0" }
+    },
+    {
+      "id": "oa-router",
+      "component": "condition",
+      "match": "${String($root.showcase.oa.step)}",
+      "animation": "fade",
+      "cases": {
+        "0": ["oa-step-fill"],
+        "1": ["oa-step-confirm"],
+        "2": ["oa-step-done"]
+      }
+    },
+
+    {
+      "id": "oa-step-fill",
+      "component": "form",
+      "submitButtonId": "oa-next-btn",
+      "children": ["oa-type-label", "oa-type-select", "oa-sick-condition", "oa-days-label", "oa-days-input", "oa-reason-label", "oa-reason-textarea", "oa-next-btn"]
+    },
+    {
+      "id": "oa-type-label",
+      "component": "typography",
+      "type": "text",
+      "content": "请假类型",
+      "style": { "fontSize": "14px", "fontWeight": 600, "color": "#1d1d1f", "margin": 0, "marginBottom": "8px" }
+    },
+    {
+      "id": "oa-type-select",
+      "component": "select",
+      "placeholder": "选择请假类型",
+      "value": { "path": "/showcase/oa/leaveType" },
+      "options": [
+        { "label": "事假", "value": "personal" },
+        { "label": "年假", "value": "annual" },
+        { "label": "病假", "value": "sick" },
+        { "label": "调休", "value": "comp" }
+      ],
+      "rules": [{ "required": true, "message": "请选择请假类型" }],
+      "style": { "width": "100%", "marginBottom": "16px" }
+    },
+    {
+      "id": "oa-sick-condition",
+      "component": "condition",
+      "when": "${$root.showcase.oa.leaveType === 'sick'}",
+      "then": ["oa-hospital-label", "oa-hospital-input"],
+      "animation": "slideUp"
+    },
+    {
+      "id": "oa-hospital-label",
+      "component": "typography",
+      "type": "text",
+      "content": "就诊医院",
+      "style": { "fontSize": "14px", "fontWeight": 600, "color": "#1d1d1f", "margin": 0, "marginBottom": "8px" }
+    },
+    {
+      "id": "oa-hospital-input",
+      "component": "input",
+      "placeholder": "请输入就诊医院名称",
+      "value": { "path": "/showcase/oa/hospital" },
+      "rules": [{ "required": true, "message": "病假需填写就诊医院" }],
+      "style": { "marginBottom": "16px" }
+    },
+    {
+      "id": "oa-days-label",
+      "component": "typography",
+      "type": "text",
+      "content": "请假天数",
+      "style": { "fontSize": "14px", "fontWeight": 600, "color": "#1d1d1f", "margin": 0, "marginBottom": "8px" }
+    },
+    {
+      "id": "oa-days-input",
+      "component": "inputnumber",
+      "value": { "path": "/showcase/oa/days" },
+      "min": 0.5,
+      "max": 30,
+      "step": 0.5,
+      "rules": [{ "required": true, "message": "请填写请假天数" }],
+      "style": { "width": "100%", "marginBottom": "16px" }
+    },
+    {
+      "id": "oa-reason-label",
+      "component": "typography",
+      "type": "text",
+      "content": "请假事由",
+      "style": { "fontSize": "14px", "fontWeight": 600, "color": "#1d1d1f", "margin": 0, "marginBottom": "8px" }
+    },
+    {
+      "id": "oa-reason-textarea",
+      "component": "textarea",
+      "placeholder": "请简要说明请假原因",
+      "value": { "path": "/showcase/oa/reason" },
+      "rules": [{ "required": true, "message": "请填写请假事由" }],
+      "style": { "marginBottom": "24px" }
+    },
+    {
+      "id": "oa-next-btn",
+      "component": "button",
+      "content": "下一步",
+      "type": "primary",
+      "block": true,
+      "style": { "borderRadius": "980px", "height": "44px", "fontSize": "17px" },
+      "on_tap": [{
+        "action": "update_data",
+        "path": "/showcase/oa/step",
+        "value": 1
+      }]
+    },
+
+    {
+      "id": "oa-step-confirm",
+      "component": "box",
+      "children": ["oa-confirm-title", "oa-confirm-info", "oa-confirm-sick-info", "oa-confirm-btns"]
+    },
+    {
+      "id": "oa-confirm-title",
+      "component": "typography",
+      "type": "title",
+      "content": "请确认以下信息",
+      "style": { "fontSize": "17px", "fontWeight": 600, "color": "#1d1d1f", "margin": 0, "marginBottom": "16px" }
+    },
+    {
+      "id": "oa-confirm-info",
+      "component": "descriptions",
+      "column": 1,
+      "bordered": true,
+      "size": "small",
+      "options": [
+        { "label": "请假类型", "value": "${$root.showcase.oa.leaveType === 'personal' ? '事假' : $root.showcase.oa.leaveType === 'annual' ? '年假' : $root.showcase.oa.leaveType === 'sick' ? '病假' : $root.showcase.oa.leaveType === 'comp' ? '调休' : '—'}" },
+        { "label": "请假天数", "value": "${($root.showcase.oa.days || 0) + ' 天'}" },
+        { "label": "请假事由", "value": "${$root.showcase.oa.reason || '—'}" }
+      ],
+      "style": { "marginBottom": "16px" }
+    },
+    {
+      "id": "oa-confirm-sick-info",
+      "component": "descriptions",
+      "column": 1,
+      "bordered": true,
+      "size": "small",
+      "visible": "${$root.showcase.oa.leaveType === 'sick'}",
+      "options": [
+        { "label": "就诊医院", "value": "${$root.showcase.oa.hospital || '—'}" }
+      ],
+      "style": { "marginBottom": "24px" }
+    },
+    {
+      "id": "oa-confirm-btns",
+      "component": "flex",
+      "gap": 12,
+      "children": ["oa-back-btn", "oa-submit-btn"]
+    },
+    {
+      "id": "oa-back-btn",
+      "component": "button",
+      "content": "返回修改",
+      "style": { "borderRadius": "980px", "height": "44px", "flex": 1 },
+      "on_tap": [{
+        "action": "update_data",
+        "path": "/showcase/oa/step",
+        "value": 0
+      }]
+    },
+    {
+      "id": "oa-submit-btn",
+      "component": "button",
+      "content": "确认提交",
+      "type": "primary",
+      "style": { "borderRadius": "980px", "height": "44px", "flex": 1 },
+      "on_tap": [
+        {
+          "action": "update_data",
+          "path": "/showcase/oa/leaveTypeDisplay",
+          "value": "${$root.showcase.oa.leaveType === 'personal' ? '事假' : $root.showcase.oa.leaveType === 'annual' ? '年假' : $root.showcase.oa.leaveType === 'sick' ? '病假' : $root.showcase.oa.leaveType === 'comp' ? '调休' : '—'}"
+        },
+        {
+          "action": "update_data",
+          "path": "/showcase/oa/step",
+          "value": 2
+        },
+        {
+          "action": "message",
+          "payload": { "type": "success", "content": "提交成功！审批流程已启动" }
+        }
+      ]
+    },
+
+    {
+      "id": "oa-step-done",
+      "component": "box",
+      "children": ["oa-done-alert", "oa-done-stat-row", "oa-done-timeline-title", "oa-done-timeline", "oa-reset-btn"]
+    },
+    {
+      "id": "oa-done-alert",
+      "component": "alert",
+      "type": "success",
+      "message": "请假申请已提交",
+      "description": "${$root.showcase.oa.leaveType === 'personal' ? '事假' : $root.showcase.oa.leaveType === 'annual' ? '年假' : $root.showcase.oa.leaveType === 'sick' ? '病假' : $root.showcase.oa.leaveType === 'comp' ? '调休' : ''} ${$root.showcase.oa.days || 0} 天 — 等待审批中",
+      "style": { "borderRadius": "12px", "marginBottom": "24px" }
+    },
+    {
+      "id": "oa-done-stat-row",
+      "component": "flex",
+      "gap": 24,
+      "justify": "center",
+      "style": { "marginBottom": "24px" },
+      "children": ["oa-done-stat-days", "oa-done-stat-type"]
+    },
+    {
+      "id": "oa-done-stat-days",
+      "component": "statistic",
+      "title": "请假天数",
+      "value": { "path": "/showcase/oa/days" },
+      "suffix": "天",
+      "valueStyle": { "fontSize": "28px", "fontWeight": 600, "color": "#0066cc" }
+    },
+    {
+      "id": "oa-done-stat-type",
+      "component": "statistic",
+      "title": "请假类型",
+      "value": { "path": "/showcase/oa/leaveTypeDisplay" },
+      "valueStyle": { "fontSize": "28px", "fontWeight": 600, "color": "#1d1d1f" }
+    },
+    {
+      "id": "oa-done-timeline-title",
+      "component": "typography",
+      "type": "text",
+      "content": "审批流水",
+      "style": { "fontSize": "14px", "fontWeight": 600, "color": "#1d1d1f", "margin": 0, "marginBottom": "16px" }
+    },
+    {
+      "id": "oa-done-timeline",
+      "component": "timeline",
+      "items": [
+        { "color": "green", "content": "申请已提交", "label": "刚刚" },
+        { "color": "blue", "content": "直属主管审批中", "label": "待处理" },
+        { "color": "gray", "content": "HR 复核", "label": "待处理" },
+        { "color": "gray", "content": "审批完成", "label": "待处理" }
+      ],
+      "style": { "marginBottom": "24px" }
+    },
+    {
+      "id": "oa-reset-btn",
+      "component": "button",
+      "content": "重新申请",
+      "block": true,
+      "style": { "borderRadius": "980px", "height": "44px", "fontSize": "17px" },
+      "on_tap": [
+        { "action": "update_data", "path": "/showcase/oa/step", "value": 0 },
+        { "action": "update_data", "path": "/showcase/oa/leaveType", "value": "" },
+        { "action": "update_data", "path": "/showcase/oa/leaveTypeDisplay", "value": "" },
+        { "action": "update_data", "path": "/showcase/oa/days", "value": 1 },
+        { "action": "update_data", "path": "/showcase/oa/reason", "value": "" },
+        { "action": "update_data", "path": "/showcase/oa/hospital", "value": "" }
+      ]
+    }
+  ],
+  "dataModel": {
+    "showcase": {
+      "expr": { "name": "" },
+      "cond": { "viewMode": "card" },
+      "form": { "name": "", "email": "", "password": "" },
+      "list": {
+        "items": [
+          { "text": "学习 FAUI JSON Schema", "done": true },
+          { "text": "搭建 Landing Page", "done": false },
+          { "text": "完成 Showcase 演示", "done": false }
+        ]
+      },
+      "anim": { "preset": "fade", "show": true },
+      "calc": { "product": "", "price": 0, "quantity": 1 },
+      "oa": { "step": 0, "leaveType": "", "leaveTypeDisplay": "", "days": 1, "reason": "", "hospital": "" }
+    }
+  },
+  "root": ["showcase-root"]
+}

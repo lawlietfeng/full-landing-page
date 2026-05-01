@@ -1,0 +1,238 @@
+{
+  "components": [
+    {
+      "id": "components-root",
+      "component": "box",
+      "children": ["comp-hero", "comp-body"]
+    },
+
+    {
+      "id": "comp-hero",
+      "component": "box",
+      "align": "center",
+      "style": { "backgroundColor": "#272729", "padding": "56px 24px 40px" },
+      "children": ["comp-hero-eyebrow", "comp-hero-title", "comp-hero-subtitle", "comp-hero-desc"],
+      "animation": "fade"
+    },
+    {
+      "id": "comp-hero-eyebrow",
+      "component": "typography",
+      "type": "text",
+      "content": "COMPONENTS",
+      "style": { "fontSize": "12px", "fontWeight": 500, "lineHeight": 1.33, "color": "#86868b", "margin": 0, "marginBottom": "12px", "textAlign": "center", "letterSpacing": "1.5px", "textTransform": "uppercase" }
+    },
+    {
+      "id": "comp-hero-title",
+      "component": "typography",
+      "type": "title",
+      "content": "组件全景",
+      "style": { "fontSize": "40px", "fontWeight": 600, "lineHeight": 1.1, "color": "#ffffff", "margin": 0, "marginBottom": "12px", "textAlign": "center" }
+    },
+    {
+      "id": "comp-hero-subtitle",
+      "component": "typography",
+      "type": "text",
+      "content": "67+ 组件，覆盖布局、展示、录入、反馈、逻辑控制与数据可视化",
+      "style": { "fontSize": "17px", "fontWeight": 400, "lineHeight": 1.47, "color": "#86868b", "margin": 0, "textAlign": "center" }
+    },
+    {
+      "id": "comp-hero-desc",
+      "component": "typography",
+      "type": "text",
+      "content": "按分类浏览所有可用组件，了解每个组件的用途与配置方式",
+      "style": { "fontSize": "14px", "fontWeight": 400, "lineHeight": 1.43, "color": "#6e6e73", "margin": 0, "marginTop": "8px", "textAlign": "center" }
+    },
+
+    {
+      "id": "comp-body",
+      "component": "box",
+      "align": "center",
+      "style": { "backgroundColor": "#f5f5f7", "padding": "48px 24px 80px" },
+      "children": ["comp-tabs-wrap"]
+    },
+    {
+      "id": "comp-tabs-wrap",
+      "component": "box",
+      "style": { "maxWidth": "1120px", "width": "100%" },
+      "children": ["comp-tabs"]
+    },
+    {
+      "id": "comp-tabs",
+      "component": "tabs",
+      "centered": true,
+      "destroyOnHidden": true,
+      "items": [
+        { "key": "layout", "label": "布局与导航", "children": ["layout-repeater"] },
+        { "key": "display", "label": "数据展示", "children": ["display-repeater"] },
+        { "key": "form", "label": "表单与录入", "children": ["form-repeater"] },
+        { "key": "overlay", "label": "弹层与反馈", "children": ["overlay-repeater"] },
+        { "key": "logic", "label": "逻辑控制", "children": ["logic-repeater"] },
+        { "key": "chart", "label": "数据可视化", "children": ["chart-repeater"] }
+      ]
+    },
+
+    {
+      "id": "layout-repeater",
+      "component": "repeater",
+      "data": { "path": "/components/layout" },
+      "keyField": "name",
+      "className": "!grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-4",
+      "style": { "paddingTop": "24px" },
+      "children": ["comp-card"]
+    },
+    {
+      "id": "display-repeater",
+      "component": "repeater",
+      "data": { "path": "/components/display" },
+      "keyField": "name",
+      "className": "!grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-4",
+      "style": { "paddingTop": "24px" },
+      "children": ["comp-card"]
+    },
+    {
+      "id": "form-repeater",
+      "component": "repeater",
+      "data": { "path": "/components/form" },
+      "keyField": "name",
+      "className": "!grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-4",
+      "style": { "paddingTop": "24px" },
+      "children": ["comp-card"]
+    },
+    {
+      "id": "overlay-repeater",
+      "component": "repeater",
+      "data": { "path": "/components/overlay" },
+      "keyField": "name",
+      "className": "!grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-4",
+      "style": { "paddingTop": "24px" },
+      "children": ["comp-card"]
+    },
+    {
+      "id": "logic-repeater",
+      "component": "repeater",
+      "data": { "path": "/components/logic" },
+      "keyField": "name",
+      "className": "!grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-4",
+      "style": { "paddingTop": "24px" },
+      "children": ["comp-card"]
+    },
+    {
+      "id": "chart-repeater",
+      "component": "repeater",
+      "data": { "path": "/components/chart" },
+      "keyField": "name",
+      "className": "!grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-4",
+      "style": { "paddingTop": "24px" },
+      "children": ["comp-card"]
+    },
+
+    {
+      "id": "comp-card",
+      "component": "box",
+      "style": { "backgroundColor": "#ffffff", "borderRadius": "18px", "border": "1px solid rgba(0,0,0,0.08)", "padding": "24px" },
+      "children": ["comp-card-name", "comp-card-desc"]
+    },
+    {
+      "id": "comp-card-name",
+      "component": "typography",
+      "type": "title",
+      "content": "${$current.name}",
+      "style": { "fontSize": "17px", "fontWeight": 600, "lineHeight": 1.29, "color": "#1d1d1f", "margin": 0, "marginBottom": "6px" }
+    },
+    {
+      "id": "comp-card-desc",
+      "component": "typography",
+      "type": "text",
+      "content": "${$current.desc}",
+      "style": { "fontSize": "14px", "fontWeight": 400, "lineHeight": 1.43, "color": "#86868b", "margin": 0 }
+    }
+  ],
+  "dataModel": {
+    "components": {
+      "layout": [
+        { "name": "Box", "desc": "弹性盒容器，支持水平/垂直排列、间距、内边距、对齐" },
+        { "name": "Flex", "desc": "弹性布局组件，支持 gap、wrap、方向、对齐" },
+        { "name": "Row", "desc": "栅格行容器，支持响应式 gutter 和水平对齐" },
+        { "name": "Col", "desc": "栅格列，支持 xs/sm/md/lg/xl/xxl 六断点响应" },
+        { "name": "Space", "desc": "间距容器，快速设置子元素水平或垂直间距" },
+        { "name": "Layout", "desc": "页面布局框架，组合 Header/Sider/Content/Footer" },
+        { "name": "Header", "desc": "Layout 页头区域" },
+        { "name": "Sider", "desc": "Layout 可折叠侧边栏，支持响应式收起" },
+        { "name": "Content", "desc": "Layout 主内容区域" },
+        { "name": "Footer", "desc": "Layout 页脚区域" },
+        { "name": "Divider", "desc": "分割线，支持水平/垂直方向和带文字标注" },
+        { "name": "Menu", "desc": "导航菜单，支持水平/垂直/内嵌三种模式" },
+        { "name": "Anchor", "desc": "锚点导航，自动高亮当前滚动位置" },
+        { "name": "Affix", "desc": "固钉，将元素固定在可视区域指定位置" }
+      ],
+      "display": [
+        { "name": "Typography", "desc": "排版组件，支持标题/段落/文本/链接四种类型" },
+        { "name": "Text", "desc": "纯文本渲染，支持表达式绑定和模板插值" },
+        { "name": "Button", "desc": "按钮，支持 primary/default/dashed/link/text 类型" },
+        { "name": "Icon", "desc": "图标库，支持 outlined/filled/twoTone 三种风格" },
+        { "name": "Tag", "desc": "标签，支持预设颜色、自定义色值和可关闭" },
+        { "name": "Badge", "desc": "徽标数，在元素右上角显示数字或状态点" },
+        { "name": "Avatar", "desc": "头像，支持图片/文字/图标三种形式" },
+        { "name": "Card", "desc": "卡片容器，支持封面、操作栏和 Meta 信息" },
+        { "name": "Collapse", "desc": "折叠面板，手风琴或自由展开模式" },
+        { "name": "Descriptions", "desc": "描述列表，键值对形式展示详细信息" },
+        { "name": "Empty", "desc": "空状态占位，支持自定义图片和描述文字" },
+        { "name": "Image", "desc": "图片组件，支持预览、懒加载和容错处理" },
+        { "name": "List", "desc": "列表，支持分页、加载更多和栅格布局" },
+        { "name": "Table", "desc": "表格，支持排序、筛选、分页和固定列" },
+        { "name": "Statistic", "desc": "统计数值展示，支持前缀后缀和倒计时" },
+        { "name": "Timeline", "desc": "时间轴，垂直展示时间流信息" },
+        { "name": "Tree", "desc": "树形控件，支持展开/选中/拖拽操作" },
+        { "name": "Tabs", "desc": "标签页切换，支持 line/card 类型和四方向" },
+        { "name": "Segmented", "desc": "分段控制器，在多个选项间快速切换" },
+        { "name": "Calendar", "desc": "日历组件，支持年/月两种视图模式" },
+        { "name": "Carousel", "desc": "走马灯，循环播放子元素内容" },
+        { "name": "QRCode", "desc": "二维码生成器，可配置尺寸和纠错级别" },
+        { "name": "Watermark", "desc": "水印，为子元素区域添加图文水印" },
+        { "name": "Skeleton", "desc": "骨架屏，数据加载前的占位动画" },
+        { "name": "Pagination", "desc": "分页器，支持总数显示和每页条数切换" },
+        { "name": "Progress", "desc": "进度条/环形图，实时展示操作进度" },
+        { "name": "Steps", "desc": "步骤条，引导用户按流程完成任务" }
+      ],
+      "form": [
+        { "name": "Form", "desc": "表单容器，内置校验规则、字段联动和提交逻辑" },
+        { "name": "Input", "desc": "单行输入框，支持前缀/后缀和清除按钮" },
+        { "name": "Textarea", "desc": "多行文本输入，支持自适应高度和字数统计" },
+        { "name": "InputNumber", "desc": "数字输入框，支持步进按钮和范围限制" },
+        { "name": "Select", "desc": "下拉选择器，支持搜索/多选/远程加载" },
+        { "name": "Radio", "desc": "单选框，支持按钮样式和垂直排列" },
+        { "name": "Checkbox", "desc": "复选框，支持全选/半选和组合使用" },
+        { "name": "Switch", "desc": "开关切换，两种状态间互斥选择" },
+        { "name": "DatePicker", "desc": "日期选择器，支持年/月/周/日和范围" },
+        { "name": "TimePicker", "desc": "时间选择器，支持时/分/秒级精度" },
+        { "name": "ColorPicker", "desc": "颜色选择器，支持 HEX/RGB/HSB 等色彩模型" },
+        { "name": "Upload", "desc": "文件上传，支持拖拽、多文件和图片墙模式" },
+        { "name": "Slider", "desc": "滑动条，在数值区间内连续或离散选值" },
+        { "name": "Rate", "desc": "评分组件，支持半星和自定义字符" },
+        { "name": "Cascader", "desc": "级联选择，多级数据逐层选取" },
+        { "name": "TreeSelect", "desc": "树选择，从树形结构中选择节点" },
+        { "name": "Transfer", "desc": "穿梭框，在左右两栏之间移动数据项" },
+        { "name": "AutoComplete", "desc": "自动补全，根据输入内容推荐选项" }
+      ],
+      "overlay": [
+        { "name": "Modal", "desc": "对话框，用于确认操作或展示重要信息" },
+        { "name": "Drawer", "desc": "抽屉面板，从屏幕边缘滑入的浮层容器" },
+        { "name": "Popover", "desc": "气泡卡片，悬浮展示丰富内容" },
+        { "name": "Tooltip", "desc": "文字提示，鼠标悬停时的简要说明" },
+        { "name": "Popconfirm", "desc": "气泡确认框，操作前的轻量二次确认" },
+        { "name": "Dropdown", "desc": "下拉菜单，点击或悬浮展开操作列表" },
+        { "name": "Alert", "desc": "警告提示，success/info/warning/error 四级反馈" },
+        { "name": "Spin", "desc": "加载指示器，全局或局部的 loading 状态" },
+        { "name": "FloatButton", "desc": "浮动按钮，固定在视口右下角的快捷操作" }
+      ],
+      "logic": [
+        { "name": "Condition", "desc": "条件渲染，根据表达式匹配结果切换显示不同子组件分支，支持 cases 多分支和 when/then/else 二元判断" },
+        { "name": "Repeater", "desc": "数据迭代器，遍历数组数据循环渲染子组件模板，支持动画、排序和 keyField 优化" }
+      ],
+      "chart": [
+        { "name": "Chart", "desc": "ECharts 图表引擎，支持折线/柱状/饼图/散点/雷达/热力图等全系列图表，按需引入零额外负担" }
+      ]
+    }
+  },
+  "root": ["components-root"]
+}

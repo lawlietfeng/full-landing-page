@@ -1,0 +1,43 @@
+{
+  "name": "full-landing-page",
+  "description": "Full-edition showcase site for faui — 7 schema-driven pages demonstrating 67+ components",
+  "version": "1.0.0",
+  "private": true,
+  "license": "Apache-2.0",
+  "author": "lawliet",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lawlietfeng/full-landing-page.git"
+  },
+  "homepage": "https://github.com/lawlietfeng/full-landing-page#readme",
+  "keywords": [
+    "faui",
+    "json-schema",
+    "showcase",
+    "antd",
+    "landing-page"
+  ],
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "faui": "file:../faui",
+    "antd": "^5.24.9",
+    "dayjs": "^1.11.13",
+    "framer-motion": "^12.38.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.4",
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
+    "@vitejs/plugin-react": "^4.4.1",
+    "tailwindcss": "^4.1.4",
+    "typescript": "~5.8.3",
+    "vite": "^6.3.4"
+  }
+}

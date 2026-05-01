@@ -1,0 +1,365 @@
+{
+  "components": [
+    {
+      "id": "table-root",
+      "component": "box",
+      "children": ["table-hero", "table-body", "table-user-modal", "table-order-modal"]
+    },
+
+    {
+      "id": "table-hero",
+      "component": "box",
+      "align": "center",
+      "style": { "backgroundColor": "#272729", "padding": "56px 24px 40px" },
+      "children": ["table-hero-eyebrow", "table-hero-title", "table-hero-subtitle", "table-hero-desc"],
+      "animation": "fade"
+    },
+    {
+      "id": "table-hero-eyebrow",
+      "component": "typography",
+      "type": "text",
+      "content": "DATA TABLE",
+      "style": { "fontSize": "12px", "fontWeight": 500, "lineHeight": 1.33, "color": "#86868b", "margin": 0, "marginBottom": "12px", "textAlign": "center", "letterSpacing": "1.5px", "textTransform": "uppercase" }
+    },
+    {
+      "id": "table-hero-title",
+      "component": "typography",
+      "type": "title",
+      "content": "异步表格",
+      "style": { "fontSize": "40px", "fontWeight": 600, "lineHeight": 1.1, "color": "#ffffff", "margin": 0, "marginBottom": "12px", "textAlign": "center" }
+    },
+    {
+      "id": "table-hero-subtitle",
+      "component": "typography",
+      "type": "text",
+      "content": "http_proxy + Table，模拟真实管理后台的异步数据加载、搜索与筛选",
+      "style": { "fontSize": "17px", "fontWeight": 400, "lineHeight": 1.47, "color": "#86868b", "margin": 0, "textAlign": "center" }
+    },
+    {
+      "id": "table-hero-desc",
+      "component": "typography",
+      "type": "text",
+      "content": "证明一份 JSON 就能搭建完整的数据管理界面",
+      "style": { "fontSize": "14px", "fontWeight": 400, "lineHeight": 1.43, "color": "#6e6e73", "margin": 0, "marginTop": "8px", "textAlign": "center" }
+    },
+
+    {
+      "id": "table-body",
+      "component": "box",
+      "align": "center",
+      "style": { "backgroundColor": "#f5f5f7", "padding": "48px 24px 80px" },
+      "children": ["table-body-inner"]
+    },
+    {
+      "id": "table-body-inner",
+      "component": "box",
+      "style": { "maxWidth": "1120px", "width": "100%" },
+      "children": ["table-tabs"]
+    },
+    {
+      "id": "table-tabs",
+      "component": "tabs",
+      "centered": true,
+      "items": [
+        { "key": "users", "label": "用户管理", "children": ["table-users-content"] },
+        { "key": "orders", "label": "订单管理", "children": ["table-orders-content"] }
+      ]
+    },
+
+    {
+      "id": "table-users-content",
+      "component": "box",
+      "style": { "paddingTop": "24px" },
+      "children": ["table-users-toolbar", "table-users-spin"],
+      "on_mount": [
+        { "action": "update_data", "path": "/table/usersLoading", "value": true },
+        {
+          "action": "http_proxy",
+          "payload": { "http_config": { "method": "GET", "path": "/api/users" } },
+          "on_success": [
+            { "action": "update_data", "path": "/table/users", "value": "${$result.data}" },
+            { "action": "update_data", "path": "/table/usersTotal", "value": "${$result.total}" },
+            { "action": "update_data", "path": "/table/usersLoading", "value": false }
+          ],
+          "on_error": [
+            { "action": "update_data", "path": "/table/usersLoading", "value": false }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "table-users-toolbar",
+      "component": "flex",
+      "gap": 12,
+      "align": "center",
+      "style": { "marginBottom": "16px" },
+      "children": ["table-users-search-input", "table-users-search-btn"]
+    },
+    {
+      "id": "table-users-search-input",
+      "component": "input",
+      "placeholder": "搜索姓名或邮箱",
+      "value": { "path": "/table/userKeyword" },
+      "allowClear": true,
+      "style": { "width": "260px" }
+    },
+    {
+      "id": "table-users-search-btn",
+      "component": "button",
+      "content": "搜索",
+      "className": "hover:opacity-80 active:scale-95 transition-all duration-200 cursor-pointer",
+      "style": { "backgroundColor": "#0066cc", "color": "#ffffff", "fontSize": "14px", "fontWeight": 400, "borderRadius": "980px", "border": "none", "padding": "6px 20px", "height": "auto", "lineHeight": "1.43", "boxShadow": "none" },
+      "on_tap": [
+        { "action": "update_data", "path": "/table/usersLoading", "value": true },
+        {
+          "action": "http_proxy",
+          "payload": {
+            "http_config": {
+              "method": "GET",
+              "path": "${'/api/users?keyword=' + encodeURIComponent($root.table.userKeyword || '')}"
+            }
+          },
+          "on_success": [
+            { "action": "update_data", "path": "/table/users", "value": "${$result.data}" },
+            { "action": "update_data", "path": "/table/usersTotal", "value": "${$result.total}" },
+            { "action": "update_data", "path": "/table/usersLoading", "value": false }
+          ],
+          "on_error": [
+            { "action": "update_data", "path": "/table/usersLoading", "value": false }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "table-users-spin",
+      "component": "spin",
+      "spinning": "${$root.table.usersLoading}",
+      "children": ["table-users-table"]
+    },
+    {
+      "id": "table-users-table",
+      "component": "table",
+      "data": { "path": "/table/users" },
+      "rowKey": "id",
+      "pagination": { "pageSize": 8 },
+      "scroll": { "y": 420 },
+      "columns": [
+        { "title": "姓名", "dataIndex": "name", "key": "name", "width": 100 },
+        { "title": "邮箱", "dataIndex": "email", "key": "email", "width": 220 },
+        { "title": "角色", "dataIndex": "role", "key": "role", "width": 100, "renderAs": "tag", "statusColors": { "管理员": "blue", "编辑": "green", "访客": "default" } },
+        { "title": "状态", "dataIndex": "status", "key": "status", "width": 80, "renderAs": "tag", "statusColors": { "启用": "green", "禁用": "red" } },
+        { "title": "创建时间", "dataIndex": "createdAt", "key": "createdAt", "width": 120 },
+        { "title": "操作", "key": "action", "width": 140, "component": "table-user-actions" }
+      ]
+    },
+    {
+      "id": "table-user-actions",
+      "component": "flex",
+      "gap": 8,
+      "children": ["table-user-edit-btn", "table-user-delete-btn"]
+    },
+    {
+      "id": "table-user-edit-btn",
+      "component": "button",
+      "content": "编辑",
+      "className": "hover:opacity-80 active:scale-95 transition-all duration-200 cursor-pointer",
+      "style": { "backgroundColor": "#0066cc", "color": "#ffffff", "fontSize": "12px", "fontWeight": 400, "borderRadius": "980px", "border": "none", "padding": "4px 14px", "height": "auto", "lineHeight": "1.33", "boxShadow": "none" },
+      "on_tap": [
+        { "action": "update_data", "path": "/table/editingUser", "value": "${$current}" },
+        { "action": "update_data", "path": "/table/userModalOpen", "value": true }
+      ]
+    },
+    {
+      "id": "table-user-delete-btn",
+      "component": "button",
+      "content": "删除",
+      "className": "hover:opacity-80 active:scale-95 transition-all duration-200 cursor-pointer",
+      "style": { "backgroundColor": "transparent", "color": "#ff3b30", "fontSize": "12px", "fontWeight": 400, "borderRadius": "980px", "border": "1px solid #ff3b30", "padding": "4px 14px", "height": "auto", "lineHeight": "1.33", "boxShadow": "none" },
+      "on_tap": [
+        { "action": "update_data", "path": "/table/users", "value": "${$root.table.users.filter(u => u.id !== $current.id)}" }
+      ]
+    },
+    {
+      "id": "table-user-modal",
+      "component": "modal",
+      "title": "编辑用户",
+      "open": { "path": "/table/userModalOpen" },
+      "children": ["table-user-modal-body"],
+      "on_ok": [
+        { "action": "update_data", "path": "/table/users", "value": "${$root.table.users.map(u => u.id === $root.table.editingUser.id ? $root.table.editingUser : u)}" },
+        { "action": "update_data", "path": "/table/userModalOpen", "value": false }
+      ]
+    },
+    {
+      "id": "table-user-modal-body",
+      "component": "box",
+      "spacing": 12,
+      "children": ["table-user-modal-name", "table-user-modal-email", "table-user-modal-role"]
+    },
+    {
+      "id": "table-user-modal-name",
+      "component": "input",
+      "label": "姓名",
+      "value": { "path": "/table/editingUser/name" }
+    },
+    {
+      "id": "table-user-modal-email",
+      "component": "input",
+      "label": "邮箱",
+      "value": { "path": "/table/editingUser/email" }
+    },
+    {
+      "id": "table-user-modal-role",
+      "component": "select",
+      "label": "角色",
+      "value": { "path": "/table/editingUser/role" },
+      "style": { "width": "100%" },
+      "options": [
+        { "label": "管理员", "value": "管理员" },
+        { "label": "编辑", "value": "编辑" },
+        { "label": "访客", "value": "访客" }
+      ]
+    },
+
+    {
+      "id": "table-orders-content",
+      "component": "box",
+      "style": { "paddingTop": "24px" },
+      "children": ["table-orders-toolbar", "table-orders-spin"],
+      "on_mount": [
+        { "action": "update_data", "path": "/table/ordersLoading", "value": true },
+        {
+          "action": "http_proxy",
+          "payload": { "http_config": { "method": "GET", "path": "/api/orders" } },
+          "on_success": [
+            { "action": "update_data", "path": "/table/orders", "value": "${$result.data}" },
+            { "action": "update_data", "path": "/table/ordersTotal", "value": "${$result.total}" },
+            { "action": "update_data", "path": "/table/ordersLoading", "value": false }
+          ],
+          "on_error": [
+            { "action": "update_data", "path": "/table/ordersLoading", "value": false }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "table-orders-toolbar",
+      "component": "flex",
+      "gap": 12,
+      "align": "center",
+      "style": { "marginBottom": "16px" },
+      "children": ["table-orders-filter-select", "table-orders-filter-btn"]
+    },
+    {
+      "id": "table-orders-filter-select",
+      "component": "select",
+      "placeholder": "按状态筛选",
+      "value": { "path": "/table/orderStatus" },
+      "allowClear": true,
+      "style": { "width": "200px" },
+      "options": [
+        { "label": "待付款", "value": "待付款" },
+        { "label": "已付款", "value": "已付款" },
+        { "label": "已发货", "value": "已发货" },
+        { "label": "已完成", "value": "已完成" }
+      ]
+    },
+    {
+      "id": "table-orders-filter-btn",
+      "component": "button",
+      "content": "查询",
+      "className": "hover:opacity-80 active:scale-95 transition-all duration-200 cursor-pointer",
+      "style": { "backgroundColor": "#0066cc", "color": "#ffffff", "fontSize": "14px", "fontWeight": 400, "borderRadius": "980px", "border": "none", "padding": "6px 20px", "height": "auto", "lineHeight": "1.43", "boxShadow": "none" },
+      "on_tap": [
+        { "action": "update_data", "path": "/table/ordersLoading", "value": true },
+        {
+          "action": "http_proxy",
+          "payload": {
+            "http_config": {
+              "method": "GET",
+              "path": "${'/api/orders?status=' + encodeURIComponent($root.table.orderStatus || '')}"
+            }
+          },
+          "on_success": [
+            { "action": "update_data", "path": "/table/orders", "value": "${$result.data}" },
+            { "action": "update_data", "path": "/table/ordersTotal", "value": "${$result.total}" },
+            { "action": "update_data", "path": "/table/ordersLoading", "value": false }
+          ],
+          "on_error": [
+            { "action": "update_data", "path": "/table/ordersLoading", "value": false }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "table-orders-spin",
+      "component": "spin",
+      "spinning": "${$root.table.ordersLoading}",
+      "children": ["table-orders-table"]
+    },
+    {
+      "id": "table-orders-table",
+      "component": "table",
+      "data": { "path": "/table/orders" },
+      "rowKey": "id",
+      "pagination": { "pageSize": 8 },
+      "scroll": { "y": 420 },
+      "columns": [
+        { "title": "订单号", "dataIndex": "id", "key": "id", "width": 150 },
+        { "title": "商品", "dataIndex": "product", "key": "product", "width": 200 },
+        { "title": "金额", "dataIndex": "amountText", "key": "amount", "width": 100 },
+        { "title": "状态", "dataIndex": "status", "key": "status", "width": 100, "renderAs": "tag", "statusColors": { "待付款": "orange", "已付款": "blue", "已发货": "cyan", "已完成": "green" } },
+        { "title": "下单时间", "dataIndex": "createdAt", "key": "createdAt", "width": 120 },
+        { "title": "操作", "key": "action", "width": 100, "component": "table-order-actions" }
+      ]
+    },
+    {
+      "id": "table-order-actions",
+      "component": "button",
+      "content": "详情",
+      "className": "hover:opacity-80 active:scale-95 transition-all duration-200 cursor-pointer",
+      "style": { "backgroundColor": "#0066cc", "color": "#ffffff", "fontSize": "12px", "fontWeight": 400, "borderRadius": "980px", "border": "none", "padding": "4px 14px", "height": "auto", "lineHeight": "1.33", "boxShadow": "none" },
+      "on_tap": [
+        { "action": "update_data", "path": "/table/viewingOrder", "value": "${$current}" },
+        { "action": "update_data", "path": "/table/orderModalOpen", "value": true }
+      ]
+    },
+    {
+      "id": "table-order-modal",
+      "component": "modal",
+      "title": "订单详情",
+      "open": { "path": "/table/orderModalOpen" },
+      "children": ["table-order-modal-body"]
+    },
+    {
+      "id": "table-order-modal-body",
+      "component": "descriptions",
+      "bordered": true,
+      "column": 1,
+      "options": [
+        { "label": "订单号", "value": "${$root.table.viewingOrder.id}" },
+        { "label": "商品", "value": "${$root.table.viewingOrder.product}" },
+        { "label": "金额", "value": "${'¥' + ($root.table.viewingOrder.amount || 0).toLocaleString()}" },
+        { "label": "状态", "value": "${$root.table.viewingOrder.status}" },
+        { "label": "下单时间", "value": "${$root.table.viewingOrder.createdAt}" }
+      ]
+    }
+  ],
+  "dataModel": {
+    "table": {
+      "users": [],
+      "usersTotal": 0,
+      "usersLoading": false,
+      "userKeyword": "",
+      "editingUser": null,
+      "userModalOpen": false,
+      "orders": [],
+      "ordersTotal": 0,
+      "ordersLoading": false,
+      "orderStatus": "",
+      "viewingOrder": null,
+      "orderModalOpen": false
+    }
+  },
+  "root": ["table-root"]
+}

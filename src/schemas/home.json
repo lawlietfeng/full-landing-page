@@ -1,0 +1,580 @@
+{
+  "components": [
+    {
+      "id": "home-root",
+      "component": "box",
+      "children": [
+        "hero-section",
+        "stats-section",
+        "json-section",
+        "features-section",
+        "techstack-section",
+        "quickstart-section"
+      ]
+    },
+
+    { "id": "__comment_hero", "component": "box", "visible": false },
+
+    {
+      "id": "hero-section",
+      "component": "box",
+      "align": "center",
+      "className": "hero-glow",
+      "style": {
+        "backgroundColor": "#272729",
+        "minHeight": "calc(100vh - 44px)",
+        "padding": "max(60px, 10vh) 24px 40px"
+      },
+      "children": ["hero-tag-cloud", "hero-title", "hero-subtitle", "hero-desc", "hero-cta-group", "hero-spacer", "hero-footnote"]
+    },
+    {
+      "id": "hero-title",
+      "component": "typography",
+      "type": "title",
+      "content": "FAUI",
+      "className": "hero-gradient-text",
+      "style": { "fontSize": "56px", "fontWeight": 600, "lineHeight": 1.07, "letterSpacing": "-0.28px", "color": "#ffffff", "margin": 0, "textAlign": "center", "position": "relative", "zIndex": 1 },
+      "animation": { "preset": "fade", "duration": 0.6 }
+    },
+    {
+      "id": "hero-subtitle",
+      "component": "typography",
+      "type": "title",
+      "content": "JSON 驱动的前端渲染引擎",
+      "style": { "fontSize": "28px", "fontWeight": 400, "lineHeight": 1.14, "color": "#ffffff", "margin": 0, "marginTop": "16px", "textAlign": "center", "position": "relative", "zIndex": 1 },
+      "animation": { "preset": "fade", "duration": 0.6, "delay": 0.1 }
+    },
+    {
+      "id": "hero-desc",
+      "component": "typography",
+      "type": "paragraph",
+      "content": "67+ 组件 · 响应式栅格 · 动画系统 · 表达式引擎 — 一份 JSON，渲染整个世界",
+      "style": { "fontSize": "17px", "fontWeight": 400, "lineHeight": 1.47, "color": "#86868b", "margin": 0, "marginTop": "12px", "textAlign": "center", "position": "relative", "zIndex": 1 },
+      "animation": { "preset": "fade", "duration": 0.6, "delay": 0.2 }
+    },
+    {
+      "id": "hero-cta-group",
+      "component": "flex",
+      "gap": 16,
+      "align": "center",
+      "justify": "center",
+      "style": { "marginTop": "32px", "position": "relative", "zIndex": 1 },
+      "children": ["hero-cta-primary", "hero-cta-secondary"],
+      "animation": { "preset": "fade", "duration": 0.6, "delay": 0.3 }
+    },
+    {
+      "id": "hero-cta-primary",
+      "component": "button",
+      "content": "开始使用",
+      "className": "hover:opacity-90 active:scale-95 transition-all duration-200 cursor-pointer",
+      "style": { "backgroundColor": "#0066cc", "color": "#ffffff", "fontSize": "17px", "fontWeight": 400, "borderRadius": "980px", "border": "none", "padding": "11px 22px", "height": "auto", "lineHeight": "1.0" },
+      "on_tap": [{ "action": "update_data", "path": "/currentPage", "value": "guide" }]
+    },
+    {
+      "id": "hero-cta-secondary",
+      "component": "button",
+      "content": "查看组件",
+      "className": "hover:opacity-90 active:scale-95 transition-all duration-200 cursor-pointer",
+      "style": { "backgroundColor": "transparent", "color": "#0066cc", "fontSize": "17px", "fontWeight": 400, "borderRadius": "980px", "border": "1px solid #0066cc", "padding": "11px 22px", "height": "auto", "lineHeight": "1.0" },
+      "on_tap": [{ "action": "update_data", "path": "/currentPage", "value": "components" }]
+    },
+    {
+      "id": "hero-tag-cloud",
+      "component": "box",
+      "style": { "position": "absolute", "inset": 0, "overflow": "hidden", "pointerEvents": "none", "userSelect": "none", "zIndex": 0 },
+      "children": [
+        "hero-tag-1", "hero-tag-2", "hero-tag-3", "hero-tag-4", "hero-tag-5",
+        "hero-tag-6", "hero-tag-7", "hero-tag-8", "hero-tag-9", "hero-tag-10",
+        "hero-tag-11", "hero-tag-12", "hero-tag-13", "hero-tag-14", "hero-tag-15",
+        "hero-tag-16", "hero-tag-17", "hero-tag-18"
+      ]
+    },
+    { "id": "hero-tag-1", "component": "tag", "content": "Table", "bordered": false, "className": "hero-float-tag", "style": { "position": "absolute", "top": "12%", "left": "8%", "fontSize": "13px", "padding": "4px 14px", "borderRadius": "980px", "backgroundColor": "rgba(0,102,204,0.12)", "color": "rgba(102,170,255,0.5)", "border": "1px solid rgba(0,102,204,0.15)", "opacity": 0.7 } },
+    { "id": "hero-tag-2", "component": "tag", "content": "Form", "bordered": false, "className": "hero-float-tag", "style": { "position": "absolute", "top": "25%", "right": "12%", "fontSize": "12px", "padding": "3px 12px", "borderRadius": "980px", "backgroundColor": "rgba(255,255,255,0.04)", "color": "rgba(134,134,139,0.45)", "border": "1px solid rgba(255,255,255,0.06)", "opacity": 0.6 } },
+    { "id": "hero-tag-3", "component": "tag", "content": "Chart", "bordered": false, "className": "hero-float-tag", "style": { "position": "absolute", "top": "8%", "right": "25%", "fontSize": "14px", "padding": "4px 14px", "borderRadius": "980px", "backgroundColor": "rgba(0,102,204,0.12)", "color": "rgba(102,170,255,0.5)", "border": "1px solid rgba(0,102,204,0.15)", "opacity": 0.55 } },
+    { "id": "hero-tag-4", "component": "tag", "content": "Modal", "bordered": false, "className": "hero-float-tag", "style": { "position": "absolute", "top": "55%", "left": "5%", "fontSize": "12px", "padding": "3px 12px", "borderRadius": "980px", "backgroundColor": "rgba(255,255,255,0.04)", "color": "rgba(134,134,139,0.45)", "border": "1px solid rgba(255,255,255,0.06)", "opacity": 0.5 } },
+    { "id": "hero-tag-5", "component": "tag", "content": "Repeater", "bordered": false, "className": "hero-float-tag", "style": { "position": "absolute", "top": "70%", "right": "8%", "fontSize": "13px", "padding": "4px 14px", "borderRadius": "980px", "backgroundColor": "rgba(0,102,204,0.12)", "color": "rgba(102,170,255,0.5)", "border": "1px solid rgba(0,102,204,0.15)", "opacity": 0.6 } },
+    { "id": "hero-tag-6", "component": "tag", "content": "Tabs", "bordered": false, "className": "hero-float-tag", "style": { "position": "absolute", "top": "40%", "left": "15%", "fontSize": "11px", "padding": "3px 10px", "borderRadius": "980px", "backgroundColor": "rgba(255,255,255,0.04)", "color": "rgba(134,134,139,0.4)", "border": "1px solid rgba(255,255,255,0.06)", "opacity": 0.45 } },
+    { "id": "hero-tag-7", "component": "tag", "content": "Drawer", "bordered": false, "className": "hero-float-tag", "style": { "position": "absolute", "top": "18%", "left": "30%", "fontSize": "12px", "padding": "3px 12px", "borderRadius": "980px", "backgroundColor": "rgba(255,255,255,0.04)", "color": "rgba(134,134,139,0.4)", "border": "1px solid rgba(255,255,255,0.06)", "opacity": 0.4 } },
+    { "id": "hero-tag-8", "component": "tag", "content": "Animation", "bordered": false, "className": "hero-float-tag", "style": { "position": "absolute", "top": "82%", "left": "20%", "fontSize": "14px", "padding": "4px 14px", "borderRadius": "980px", "backgroundColor": "rgba(0,102,204,0.12)", "color": "rgba(102,170,255,0.5)", "border": "1px solid rgba(0,102,204,0.15)", "opacity": 0.55 } },
+    { "id": "hero-tag-9", "component": "tag", "content": "Grid", "bordered": false, "className": "hero-float-tag", "style": { "position": "absolute", "top": "65%", "left": "38%", "fontSize": "11px", "padding": "3px 10px", "borderRadius": "980px", "backgroundColor": "rgba(255,255,255,0.04)", "color": "rgba(134,134,139,0.35)", "border": "1px solid rgba(255,255,255,0.06)", "opacity": 0.4 } },
+    { "id": "hero-tag-10", "component": "tag", "content": "Expression", "bordered": false, "className": "hero-float-tag", "style": { "position": "absolute", "top": "35%", "right": "5%", "fontSize": "13px", "padding": "4px 14px", "borderRadius": "980px", "backgroundColor": "rgba(0,102,204,0.12)", "color": "rgba(102,170,255,0.5)", "border": "1px solid rgba(0,102,204,0.15)", "opacity": 0.65 } },
+    { "id": "hero-tag-11", "component": "tag", "content": "Statistic", "bordered": false, "className": "hero-float-tag", "style": { "position": "absolute", "top": "50%", "right": "22%", "fontSize": "12px", "padding": "3px 12px", "borderRadius": "980px", "backgroundColor": "rgba(255,255,255,0.04)", "color": "rgba(134,134,139,0.4)", "border": "1px solid rgba(255,255,255,0.06)", "opacity": 0.45 } },
+    { "id": "hero-tag-12", "component": "tag", "content": "Carousel", "bordered": false, "className": "hero-float-tag", "style": { "position": "absolute", "top": "78%", "right": "30%", "fontSize": "11px", "padding": "3px 10px", "borderRadius": "980px", "backgroundColor": "rgba(255,255,255,0.04)", "color": "rgba(134,134,139,0.35)", "border": "1px solid rgba(255,255,255,0.06)", "opacity": 0.4 } },
+    { "id": "hero-tag-13", "component": "tag", "content": "Condition", "bordered": false, "className": "hero-float-tag", "style": { "position": "absolute", "top": "5%", "left": "55%", "fontSize": "12px", "padding": "3px 12px", "borderRadius": "980px", "backgroundColor": "rgba(0,102,204,0.12)", "color": "rgba(102,170,255,0.45)", "border": "1px solid rgba(0,102,204,0.15)", "opacity": 0.5 } },
+    { "id": "hero-tag-14", "component": "tag", "content": "http_proxy", "bordered": false, "className": "hero-float-tag", "style": { "position": "absolute", "top": "88%", "left": "50%", "fontSize": "12px", "padding": "3px 12px", "borderRadius": "980px", "backgroundColor": "rgba(255,255,255,0.04)", "color": "rgba(134,134,139,0.35)", "border": "1px solid rgba(255,255,255,0.06)", "opacity": 0.4 } },
+    { "id": "hero-tag-15", "component": "tag", "content": "Spin", "bordered": false, "className": "hero-float-tag", "style": { "position": "absolute", "top": "45%", "left": "3%", "fontSize": "11px", "padding": "3px 10px", "borderRadius": "980px", "backgroundColor": "rgba(0,102,204,0.1)", "color": "rgba(102,170,255,0.4)", "border": "1px solid rgba(0,102,204,0.12)", "opacity": 0.4 } },
+    { "id": "hero-tag-16", "component": "tag", "content": "Select", "bordered": false, "className": "hero-float-tag", "style": { "position": "absolute", "top": "22%", "right": "40%", "fontSize": "11px", "padding": "3px 10px", "borderRadius": "980px", "backgroundColor": "rgba(255,255,255,0.04)", "color": "rgba(134,134,139,0.35)", "border": "1px solid rgba(255,255,255,0.06)", "opacity": 0.35 } },
+    { "id": "hero-tag-17", "component": "tag", "content": "Descriptions", "bordered": false, "className": "hero-float-tag", "style": { "position": "absolute", "top": "60%", "right": "40%", "fontSize": "12px", "padding": "3px 12px", "borderRadius": "980px", "backgroundColor": "rgba(0,102,204,0.1)", "color": "rgba(102,170,255,0.4)", "border": "1px solid rgba(0,102,204,0.12)", "opacity": 0.45 } },
+    { "id": "hero-tag-18", "component": "tag", "content": "Anchor", "bordered": false, "className": "hero-float-tag", "style": { "position": "absolute", "top": "90%", "right": "12%", "fontSize": "11px", "padding": "3px 10px", "borderRadius": "980px", "backgroundColor": "rgba(255,255,255,0.04)", "color": "rgba(134,134,139,0.3)", "border": "1px solid rgba(255,255,255,0.06)", "opacity": 0.35 } },
+    {
+      "id": "hero-spacer",
+      "component": "box",
+      "style": { "flex": 1 }
+    },
+    {
+      "id": "hero-footnote",
+      "component": "typography",
+      "type": "paragraph",
+      "content": "你正在看的这个页面，就是 FAUI 渲染的。",
+      "className": "hero-pulse",
+      "style": { "fontSize": "14px", "fontWeight": 400, "lineHeight": 1.43, "color": "#86868b", "margin": 0, "textAlign": "center", "position": "relative", "zIndex": 1 },
+      "animation": { "preset": "fade", "duration": 0.8, "delay": 0.5 }
+    },
+
+    { "id": "__comment_stats", "component": "box", "visible": false },
+
+    {
+      "id": "stats-section",
+      "component": "box",
+      "align": "center",
+      "style": { "backgroundColor": "#ffffff", "padding": "80px 24px" },
+      "children": ["stats-inner"],
+      "animation": "fade"
+    },
+    {
+      "id": "stats-inner",
+      "component": "row",
+      "gutter": [24, 24],
+      "justify": "center",
+      "style": { "maxWidth": "980px", "width": "100%"  },
+      "children": ["stats-col-1", "stats-col-2", "stats-col-3", "stats-col-4"]
+    },
+    {
+      "id": "stats-col-1",
+      "component": "col",
+      "xs": 12,
+      "lg": 6,
+      "children": ["stat-1"]
+    },
+    {
+      "id": "stat-1",
+      "component": "statistic",
+      "title": "组件",
+      "content": "67+",
+      "countUp": 1500,
+      "valueStyle": { "fontSize": "48px", "fontWeight": 600, "color": "#1d1d1f", "letterSpacing": "-0.5px" },
+      "style": { "textAlign": "center" }
+    },
+    {
+      "id": "stats-col-2",
+      "component": "col",
+      "xs": 12,
+      "lg": 6,
+      "children": ["stat-2"]
+    },
+    {
+      "id": "stat-2",
+      "component": "statistic",
+      "title": "动画预设",
+      "content": "6",
+      "countUp": 1200,
+      "valueStyle": { "fontSize": "48px", "fontWeight": 600, "color": "#1d1d1f", "letterSpacing": "-0.5px" },
+      "style": { "textAlign": "center" }
+    },
+    {
+      "id": "stats-col-3",
+      "component": "col",
+      "xs": 12,
+      "lg": 6,
+      "children": ["stat-3"]
+    },
+    {
+      "id": "stat-3",
+      "component": "statistic",
+      "title": "运行时依赖",
+      "content": "0",
+      "valueStyle": { "fontSize": "48px", "fontWeight": 600, "color": "#1d1d1f", "letterSpacing": "-0.5px" },
+      "style": { "textAlign": "center" }
+    },
+    {
+      "id": "stats-col-4",
+      "component": "col",
+      "xs": 12,
+      "lg": 6,
+      "children": ["stat-4"]
+    },
+    {
+      "id": "stat-4",
+      "component": "statistic",
+      "title": "可扩展",
+      "content": "∞",
+      "valueStyle": { "fontSize": "48px", "fontWeight": 600, "color": "#1d1d1f", "letterSpacing": "-0.5px" },
+      "style": { "textAlign": "center" }
+    },
+
+    { "id": "__comment_json", "component": "box", "visible": false },
+
+    {
+      "id": "json-section",
+      "component": "box",
+      "align": "center",
+      "style": { "backgroundColor": "#272729", "padding": "80px 24px" },
+      "children": ["json-title", "json-inner"],
+      "animation": "fade"
+    },
+    {
+      "id": "json-title",
+      "component": "typography",
+      "type": "title",
+      "content": "JSON in, UI out.",
+      "style": { "fontSize": "40px", "fontWeight": 600, "lineHeight": 1.1, "color": "#ffffff", "margin": 0, "marginBottom": "48px", "textAlign": "center" }
+    },
+    {
+      "id": "json-inner",
+      "component": "row",
+      "gutter": [32, 32],
+      "align": "top",
+      "style": { "maxWidth": "980px", "width": "100%" },
+      "children": ["json-col-code", "json-col-result"]
+    },
+    {
+      "id": "json-col-code",
+      "component": "col",
+      "xs": 24,
+      "lg": 12,
+      "children": ["json-code-card"]
+    },
+    {
+      "id": "json-code-card",
+      "component": "box",
+      "style": { "backgroundColor": "#1d1d1f", "borderRadius": "12px", "padding": "24px", "overflow": "auto" },
+      "children": ["json-code-label", "json-code-text"]
+    },
+    {
+      "id": "json-code-label",
+      "component": "typography",
+      "type": "text",
+      "content": "schema.json",
+      "style": { "fontSize": "12px", "fontWeight": 400, "color": "#86868b", "margin": 0, "marginBottom": "16px" }
+    },
+    {
+      "id": "json-code-text",
+      "component": "typography",
+      "type": "text",
+      "content": "{\n  \"component\": \"button\",\n  \"content\": \"开始使用\",\n  \"style\": {\n    \"backgroundColor\": \"#0066cc\",\n    \"borderRadius\": \"980px\",\n    \"color\": \"#ffffff\"\n  },\n  \"on_tap\": [{\n    \"action\": \"update_data\",\n    \"path\": \"/started\",\n    \"value\": true\n  }]\n}",
+      "style": { "fontSize": "14px", "fontWeight": 400, "lineHeight": 1.6, "color": "#e0e0e0", "margin": 0, "fontFamily": "ui-monospace, 'SF Mono', Monaco, 'Cascadia Code', monospace", "whiteSpace": "pre" }
+    },
+    {
+      "id": "json-col-result",
+      "component": "col",
+      "xs": 24,
+      "lg": 12,
+      "children": ["json-result-card"]
+    },
+    {
+      "id": "json-result-card",
+      "component": "box",
+      "align": "center",
+      "justify": "center",
+      "style": { "backgroundColor": "#1d1d1f", "borderRadius": "12px", "padding": "48px 24px", "minHeight": "280px" },
+      "children": ["json-result-label", "json-result-demo"]
+    },
+    {
+      "id": "json-result-label",
+      "component": "typography",
+      "type": "text",
+      "content": "渲染结果",
+      "style": { "fontSize": "12px", "fontWeight": 400, "color": "#86868b", "margin": 0, "marginBottom": "32px" }
+    },
+    {
+      "id": "json-result-demo",
+      "component": "button",
+      "content": "开始使用",
+      "className": "hover:opacity-90 active:scale-95 transition-all duration-200 cursor-pointer",
+      "style": { "backgroundColor": "#0066cc", "color": "#ffffff", "fontSize": "17px", "fontWeight": 400, "borderRadius": "980px", "border": "none", "padding": "11px 22px", "height": "auto", "lineHeight": "1.0" }
+    },
+
+    { "id": "__comment_features", "component": "box", "visible": false },
+
+    {
+      "id": "features-section",
+      "component": "box",
+      "align": "center",
+      "style": { "backgroundColor": "#f5f5f7", "padding": "80px 24px" },
+      "children": ["features-title", "feature-1", "feature-2", "feature-3", "feature-4", "feature-5"],
+      "animation": "fade"
+    },
+    {
+      "id": "features-title",
+      "component": "typography",
+      "type": "title",
+      "content": "五大核心能力",
+      "style": { "fontSize": "40px", "fontWeight": 600, "lineHeight": 1.1, "color": "#1d1d1f", "margin": 0, "marginBottom": "56px", "textAlign": "center" }
+    },
+    {
+      "id": "feature-1",
+      "component": "box",
+      "align": "center",
+      "style": { "maxWidth": "680px", "marginBottom": "48px" },
+      "children": ["feature-1-title", "feature-1-desc"]
+    },
+    {
+      "id": "feature-1-title",
+      "component": "typography",
+      "type": "title",
+      "content": "组件矩阵",
+      "style": { "fontSize": "28px", "fontWeight": 600, "lineHeight": 1.14, "color": "#1d1d1f", "margin": 0, "marginBottom": "8px", "textAlign": "center" }
+    },
+    {
+      "id": "feature-1-desc",
+      "component": "typography",
+      "type": "text",
+      "content": "从 Input 到 ECharts，67+ 组件覆盖全场景。表单、数据展示、弹层反馈、数据可视化 — 一个 JSON Schema 搞定所有 UI 需求。",
+      "style": { "fontSize": "17px", "fontWeight": 400, "lineHeight": 1.47, "color": "#86868b", "margin": 0, "textAlign": "center" }
+    },
+    {
+      "id": "feature-2",
+      "component": "box",
+      "align": "center",
+      "style": { "maxWidth": "680px", "marginBottom": "48px" },
+      "children": ["feature-2-title", "feature-2-desc"]
+    },
+    {
+      "id": "feature-2-title",
+      "component": "typography",
+      "type": "title",
+      "content": "响应式布局",
+      "style": { "fontSize": "28px", "fontWeight": 600, "lineHeight": 1.14, "color": "#1d1d1f", "margin": 0, "marginBottom": "8px", "textAlign": "center" }
+    },
+    {
+      "id": "feature-2-desc",
+      "component": "typography",
+      "type": "text",
+      "content": "xs / sm / md / lg / xl / xxl 六断点自适应。手机到大屏，一套 JSON 定义，Col 栅格自动重排。",
+      "style": { "fontSize": "17px", "fontWeight": 400, "lineHeight": 1.47, "color": "#86868b", "margin": 0, "textAlign": "center" }
+    },
+    {
+      "id": "feature-3",
+      "component": "box",
+      "align": "center",
+      "style": { "maxWidth": "680px", "marginBottom": "48px" },
+      "children": ["feature-3-title", "feature-3-desc"]
+    },
+    {
+      "id": "feature-3-title",
+      "component": "typography",
+      "type": "title",
+      "content": "动画系统",
+      "style": { "fontSize": "28px", "fontWeight": 600, "lineHeight": 1.14, "color": "#1d1d1f", "margin": 0, "marginBottom": "8px", "textAlign": "center" }
+    },
+    {
+      "id": "feature-3-desc",
+      "component": "typography",
+      "type": "text",
+      "content": "6 种预设动画 + Spring 物理引擎 + 自定义关键帧。framer-motion 可选引入，不装零负担。visible 切换、Condition 分支、Repeater 列表增删全部丝滑过渡。",
+      "style": { "fontSize": "17px", "fontWeight": 400, "lineHeight": 1.47, "color": "#86868b", "margin": 0, "textAlign": "center" }
+    },
+    {
+      "id": "feature-4",
+      "component": "box",
+      "align": "center",
+      "style": { "maxWidth": "680px", "marginBottom": "48px" },
+      "children": ["feature-4-title", "feature-4-desc"]
+    },
+    {
+      "id": "feature-4-title",
+      "component": "typography",
+      "type": "title",
+      "content": "表达式引擎",
+      "style": { "fontSize": "28px", "fontWeight": 600, "lineHeight": 1.14, "color": "#1d1d1f", "margin": 0, "marginBottom": "8px", "textAlign": "center" }
+    },
+    {
+      "id": "feature-4-desc",
+      "component": "typography",
+      "type": "text",
+      "content": "${} 动态绑定，安全沙箱隔离。Proxy 拦截 + 全局变量遮蔽，让表达式在 JSON 中安全运行。数据联动、条件渲染、模板文本，无限可能。",
+      "style": { "fontSize": "17px", "fontWeight": 400, "lineHeight": 1.47, "color": "#86868b", "margin": 0, "textAlign": "center" }
+    },
+    {
+      "id": "feature-5",
+      "component": "box",
+      "align": "center",
+      "style": { "maxWidth": "680px" },
+      "children": ["feature-5-title", "feature-5-desc"]
+    },
+    {
+      "id": "feature-5-title",
+      "component": "typography",
+      "type": "title",
+      "content": "Action 体系",
+      "style": { "fontSize": "28px", "fontWeight": 600, "lineHeight": 1.14, "color": "#1d1d1f", "margin": 0, "marginBottom": "8px", "textAlign": "center" }
+    },
+    {
+      "id": "feature-5-desc",
+      "component": "typography",
+      "type": "text",
+      "content": "update_data / http_proxy / message / notification — 交互逻辑完全 JSON 化。链式回调、条件执行、异步请求，无需一行代码。",
+      "style": { "fontSize": "17px", "fontWeight": 400, "lineHeight": 1.47, "color": "#86868b", "margin": 0, "textAlign": "center" }
+    },
+
+    { "id": "__comment_techstack", "component": "box", "visible": false },
+
+    {
+      "id": "techstack-section",
+      "component": "box",
+      "align": "center",
+      "style": { "backgroundColor": "#ffffff", "padding": "80px 24px" },
+      "children": ["techstack-title", "techstack-tags", "techstack-note"],
+      "animation": "fade"
+    },
+    {
+      "id": "techstack-title",
+      "component": "typography",
+      "type": "title",
+      "content": "技术栈",
+      "style": { "fontSize": "40px", "fontWeight": 600, "lineHeight": 1.1, "color": "#1d1d1f", "margin": 0, "marginBottom": "32px", "textAlign": "center" }
+    },
+    {
+      "id": "techstack-tags",
+      "component": "flex",
+      "gap": 12,
+      "align": "center",
+      "justify": "center",
+      "wrap": true,
+      "style": { "marginBottom": "24px" },
+      "children": ["tech-tag-1", "tech-tag-2", "tech-tag-3", "tech-tag-4", "tech-tag-5"]
+    },
+    {
+      "id": "tech-tag-1",
+      "component": "tag",
+      "content": "React 18+",
+      "style": { "fontSize": "14px", "padding": "4px 12px" }
+    },
+    {
+      "id": "tech-tag-2",
+      "component": "tag",
+      "content": "TypeScript",
+      "style": { "fontSize": "14px", "padding": "4px 12px" }
+    },
+    {
+      "id": "tech-tag-3",
+      "component": "tag",
+      "content": "Ant Design 5+",
+      "style": { "fontSize": "14px", "padding": "4px 12px" }
+    },
+    {
+      "id": "tech-tag-4",
+      "component": "tag",
+      "content": "ECharts (可选)",
+      "style": { "fontSize": "14px", "padding": "4px 12px" }
+    },
+    {
+      "id": "tech-tag-5",
+      "component": "tag",
+      "content": "framer-motion (可选)",
+      "style": { "fontSize": "14px", "padding": "4px 12px" }
+    },
+    {
+      "id": "techstack-note",
+      "component": "typography",
+      "type": "text",
+      "content": "零运行时依赖。核心包仅依赖 React 和 Ant Design，图表和动画按需引入。",
+      "style": { "fontSize": "17px", "fontWeight": 400, "lineHeight": 1.47, "color": "#86868b", "margin": 0, "textAlign": "center" }
+    },
+
+    { "id": "__comment_quickstart", "component": "box", "visible": false },
+
+    {
+      "id": "quickstart-section",
+      "component": "box",
+      "align": "center",
+      "style": { "backgroundColor": "#272729", "padding": "80px 24px" },
+      "children": ["quickstart-title", "quickstart-steps"],
+      "animation": "fade"
+    },
+    {
+      "id": "quickstart-title",
+      "component": "typography",
+      "type": "title",
+      "content": "三步上手",
+      "style": { "fontSize": "40px", "fontWeight": 600, "lineHeight": 1.1, "color": "#ffffff", "margin": 0, "marginBottom": "48px", "textAlign": "center" }
+    },
+    {
+      "id": "quickstart-steps",
+      "component": "box",
+      "style": { "maxWidth": "600px", "width": "100%" },
+      "spacing": 32,
+      "children": ["qs-step-1", "qs-step-2", "qs-step-3"]
+    },
+    {
+      "id": "qs-step-1",
+      "component": "box",
+      "children": ["qs-step-1-label", "qs-step-1-code"]
+    },
+    {
+      "id": "qs-step-1-label",
+      "component": "typography",
+      "type": "text",
+      "content": "Step 1 — 安装",
+      "style": { "fontSize": "14px", "fontWeight": 600, "color": "#86868b", "margin": 0, "marginBottom": "8px", "textTransform": "uppercase", "letterSpacing": "0.5px" }
+    },
+    {
+      "id": "qs-step-1-code",
+      "component": "box",
+      "style": { "backgroundColor": "#1d1d1f", "borderRadius": "12px", "padding": "16px 20px" },
+      "children": ["qs-step-1-text"]
+    },
+    {
+      "id": "qs-step-1-text",
+      "component": "typography",
+      "type": "text",
+      "content": "npm install faui",
+      "style": { "fontSize": "15px", "fontWeight": 400, "color": "#e0e0e0", "margin": 0, "fontFamily": "ui-monospace, 'SF Mono', Monaco, monospace" }
+    },
+    {
+      "id": "qs-step-2",
+      "component": "box",
+      "children": ["qs-step-2-label", "qs-step-2-code"]
+    },
+    {
+      "id": "qs-step-2-label",
+      "component": "typography",
+      "type": "text",
+      "content": "Step 2 — 编写 JSON Schema",
+      "style": { "fontSize": "14px", "fontWeight": 600, "color": "#86868b", "margin": 0, "marginBottom": "8px", "textTransform": "uppercase", "letterSpacing": "0.5px" }
+    },
+    {
+      "id": "qs-step-2-code",
+      "component": "box",
+      "style": { "backgroundColor": "#1d1d1f", "borderRadius": "12px", "padding": "16px 20px" },
+      "children": ["qs-step-2-text"]
+    },
+    {
+      "id": "qs-step-2-text",
+      "component": "typography",
+      "type": "text",
+      "content": "{\n  \"components\": [{ \"id\": \"root\", ... }],\n  \"dataModel\": { \"name\": \"World\" }\n}",
+      "style": { "fontSize": "15px", "fontWeight": 400, "lineHeight": 1.6, "color": "#e0e0e0", "margin": 0, "fontFamily": "ui-monospace, 'SF Mono', Monaco, monospace", "whiteSpace": "pre" }
+    },
+    {
+      "id": "qs-step-3",
+      "component": "box",
+      "children": ["qs-step-3-label", "qs-step-3-code"]
+    },
+    {
+      "id": "qs-step-3-label",
+      "component": "typography",
+      "type": "text",
+      "content": "Step 3 — 渲染",
+      "style": { "fontSize": "14px", "fontWeight": 600, "color": "#86868b", "margin": 0, "marginBottom": "8px", "textTransform": "uppercase", "letterSpacing": "0.5px" }
+    },
+    {
+      "id": "qs-step-3-code",
+      "component": "box",
+      "style": { "backgroundColor": "#1d1d1f", "borderRadius": "12px", "padding": "16px 20px" },
+      "children": ["qs-step-3-text"]
+    },
+    {
+      "id": "qs-step-3-text",
+      "component": "typography",
+      "type": "text",
+      "content": "<SchemaRenderer\n  schema={schema}\n  componentRegistry={ComponentRegistry}\n/>",
+      "style": { "fontSize": "15px", "fontWeight": 400, "lineHeight": 1.6, "color": "#e0e0e0", "margin": 0, "fontFamily": "ui-monospace, 'SF Mono', Monaco, monospace", "whiteSpace": "pre" }
+    }
+  ],
+  "dataModel": {
+    "home": {}
+  },
+  "root": ["home-root"]
+}

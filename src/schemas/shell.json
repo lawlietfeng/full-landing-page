@@ -1,0 +1,309 @@
+{
+  "components": [
+    {
+      "id": "root",
+      "component": "box",
+      "children": ["global-nav", "page-body", "mobile-drawer"]
+    },
+    {
+      "id": "global-nav",
+      "component": "box",
+      "style": {
+        "position": "fixed",
+        "top": 0,
+        "left": 0,
+        "right": 0,
+        "height": "44px",
+        "backgroundColor": "rgba(0, 0, 0, 0.8)",
+        "backdropFilter": "blur(20px)",
+        "WebkitBackdropFilter": "blur(20px)",
+        "zIndex": 1000
+      },
+      "children": ["nav-inner"]
+    },
+    {
+      "id": "nav-inner",
+      "component": "flex",
+      "align": "center",
+      "justify": "space-between",
+      "style": { "height": "100%", "padding": "0 48px" },
+      "children": ["nav-logo", "nav-links", "nav-right"]
+    },
+    {
+      "id": "nav-logo",
+      "component": "button",
+      "content": "FAUI",
+      "className": "cursor-pointer",
+      "style": {
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "letterSpacing": "-0.14px",
+        "color": "#ffffff",
+        "backgroundColor": "transparent",
+        "border": "none",
+        "padding": 0,
+        "height": "auto",
+        "lineHeight": "1",
+        "boxShadow": "none"
+      },
+      "on_tap": [{ "action": "update_data", "path": "/currentPage", "value": "home" }]
+    },
+    {
+      "id": "nav-links",
+      "component": "flex",
+      "gap": 24,
+      "align": "center",
+      "visible": "${$root.screen !== 'mobile'}",
+      "children": ["nav-link-home", "nav-link-components", "nav-link-showcase", "nav-link-guide", "nav-link-table", "nav-link-dashboard"]
+    },
+    {
+      "id": "nav-link-home",
+      "component": "button",
+      "content": "首页",
+      "className": "hover:opacity-80 transition-opacity",
+      "style": { "fontSize": "12px", "fontWeight": "${$root.currentPage === 'home' ? 500 : 400}", "color": "${$root.currentPage === 'home' ? '#ffffff' : '#86868b'}", "letterSpacing": "-0.12px", "backgroundColor": "transparent", "border": "none", "padding": 0, "height": "auto", "lineHeight": "1", "boxShadow": "none", "cursor": "${$root.currentPage === 'home' ? 'default' : 'pointer'}", "pointerEvents": "${$root.currentPage === 'home' ? 'none' : 'auto'}" },
+      "on_tap": [{ "action": "update_data", "path": "/currentPage", "value": "home" }]
+    },
+    {
+      "id": "nav-link-components",
+      "component": "button",
+      "content": "组件",
+      "className": "hover:opacity-80 transition-opacity",
+      "style": { "fontSize": "12px", "fontWeight": "${$root.currentPage === 'components' ? 500 : 400}", "color": "${$root.currentPage === 'components' ? '#ffffff' : '#86868b'}", "letterSpacing": "-0.12px", "backgroundColor": "transparent", "border": "none", "padding": 0, "height": "auto", "lineHeight": "1", "boxShadow": "none", "cursor": "${$root.currentPage === 'components' ? 'default' : 'pointer'}", "pointerEvents": "${$root.currentPage === 'components' ? 'none' : 'auto'}" },
+      "on_tap": [{ "action": "update_data", "path": "/currentPage", "value": "components" }]
+    },
+    {
+      "id": "nav-link-showcase",
+      "component": "button",
+      "content": "演示",
+      "className": "hover:opacity-80 transition-opacity",
+      "style": { "fontSize": "12px", "fontWeight": "${$root.currentPage === 'showcase' ? 500 : 400}", "color": "${$root.currentPage === 'showcase' ? '#ffffff' : '#86868b'}", "letterSpacing": "-0.12px", "backgroundColor": "transparent", "border": "none", "padding": 0, "height": "auto", "lineHeight": "1", "boxShadow": "none", "cursor": "${$root.currentPage === 'showcase' ? 'default' : 'pointer'}", "pointerEvents": "${$root.currentPage === 'showcase' ? 'none' : 'auto'}" },
+      "on_tap": [{ "action": "update_data", "path": "/currentPage", "value": "showcase" }]
+    },
+    {
+      "id": "nav-link-guide",
+      "component": "button",
+      "content": "上手",
+      "className": "hover:opacity-80 transition-opacity",
+      "style": { "fontSize": "12px", "fontWeight": "${$root.currentPage === 'guide' ? 500 : 400}", "color": "${$root.currentPage === 'guide' ? '#ffffff' : '#86868b'}", "letterSpacing": "-0.12px", "backgroundColor": "transparent", "border": "none", "padding": 0, "height": "auto", "lineHeight": "1", "boxShadow": "none", "cursor": "${$root.currentPage === 'guide' ? 'default' : 'pointer'}", "pointerEvents": "${$root.currentPage === 'guide' ? 'none' : 'auto'}" },
+      "on_tap": [{ "action": "update_data", "path": "/currentPage", "value": "guide" }]
+    },
+    {
+      "id": "nav-link-table",
+      "component": "button",
+      "content": "表格",
+      "className": "hover:opacity-80 transition-opacity",
+      "style": { "fontSize": "12px", "fontWeight": "${$root.currentPage === 'table' ? 500 : 400}", "color": "${$root.currentPage === 'table' ? '#ffffff' : '#86868b'}", "letterSpacing": "-0.12px", "backgroundColor": "transparent", "border": "none", "padding": 0, "height": "auto", "lineHeight": "1", "boxShadow": "none", "cursor": "${$root.currentPage === 'table' ? 'default' : 'pointer'}", "pointerEvents": "${$root.currentPage === 'table' ? 'none' : 'auto'}" },
+      "on_tap": [{ "action": "update_data", "path": "/currentPage", "value": "table" }]
+    },
+    {
+      "id": "nav-link-dashboard",
+      "component": "button",
+      "content": "大屏",
+      "className": "hover:opacity-80 transition-opacity",
+      "style": { "fontSize": "12px", "fontWeight": "${$root.currentPage === 'dashboard' ? 500 : 400}", "color": "${$root.currentPage === 'dashboard' ? '#ffffff' : '#86868b'}", "letterSpacing": "-0.12px", "backgroundColor": "transparent", "border": "none", "padding": 0, "height": "auto", "lineHeight": "1", "boxShadow": "none", "cursor": "${$root.currentPage === 'dashboard' ? 'default' : 'pointer'}", "pointerEvents": "${$root.currentPage === 'dashboard' ? 'none' : 'auto'}" },
+      "on_tap": [{ "action": "update_data", "path": "/currentPage", "value": "dashboard" }]
+    },
+    {
+      "id": "nav-right",
+      "component": "flex",
+      "gap": 12,
+      "align": "center",
+      "children": ["nav-cta", "nav-hamburger"]
+    },
+    {
+      "id": "nav-cta",
+      "component": "button",
+      "content": "GitHub",
+      "visible": "${$root.screen !== 'mobile'}",
+      "className": "cursor-pointer hover:opacity-90 transition-opacity",
+      "style": {
+        "backgroundColor": "#0066cc",
+        "color": "#ffffff",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "borderRadius": "980px",
+        "border": "none",
+        "padding": "4px 14px",
+        "height": "auto",
+        "lineHeight": "1.33"
+      }
+    },
+    {
+      "id": "nav-hamburger",
+      "component": "button",
+      "content": "☰",
+      "visible": "${$root.screen === 'mobile'}",
+      "className": "cursor-pointer",
+      "style": { "fontSize": "20px", "color": "#ffffff", "backgroundColor": "transparent", "border": "none", "padding": 0, "height": "auto", "lineHeight": "1", "boxShadow": "none" },
+      "on_tap": [{ "action": "update_data", "path": "/mobileMenuOpen", "value": true }]
+    },
+    {
+      "id": "page-body",
+      "component": "box",
+      "style": { "paddingTop": "44px" },
+      "children": ["page-router", "footer-section"]
+    },
+    {
+      "id": "page-router",
+      "component": "condition",
+      "match": "${$root.currentPage}",
+      "cases": {
+        "home": ["home-root"],
+        "components": ["components-root"],
+        "showcase": ["showcase-root"],
+        "guide": ["guide-root"],
+        "table": ["table-root"],
+        "dashboard": ["dash-root"]
+      },
+      "animation": "fade"
+    },
+    {
+      "id": "mobile-drawer",
+      "component": "drawer",
+      "open": { "path": "/mobileMenuOpen" },
+      "placement": "right",
+      "width": 280,
+      "closable": true,
+      "className": "mobile-drawer",
+      "style": { "backgroundColor": "transparent" },
+      "children": ["drawer-nav-home", "drawer-nav-components", "drawer-nav-showcase", "drawer-nav-guide", "drawer-nav-table", "drawer-nav-dashboard"]
+    },
+    {
+      "id": "drawer-nav-home",
+      "component": "button",
+      "content": "首页",
+      "className": "transition-all duration-200",
+      "style": { "width": "100%", "textAlign": "left", "backgroundColor": "${$root.currentPage === 'home' ? 'rgba(255,255,255,0.08)' : 'transparent'}", "border": "none", "borderBottom": "1px solid rgba(255,255,255,0.06)", "borderRadius": 0, "color": "${$root.currentPage === 'home' ? '#ffffff' : '#86868b'}", "fontSize": "15px", "fontWeight": "${$root.currentPage === 'home' ? 600 : 400}", "padding": "16px 20px", "height": "auto", "boxShadow": "none", "letterSpacing": "0.2px", "pointerEvents": "${$root.currentPage === 'home' ? 'none' : 'auto'}" },
+      "on_tap": [
+        { "action": "update_data", "path": "/currentPage", "value": "home" },
+        { "action": "update_data", "path": "/mobileMenuOpen", "value": false }
+      ]
+    },
+    {
+      "id": "drawer-nav-components",
+      "component": "button",
+      "content": "组件",
+      "className": "transition-all duration-200",
+      "style": { "width": "100%", "textAlign": "left", "backgroundColor": "${$root.currentPage === 'components' ? 'rgba(255,255,255,0.08)' : 'transparent'}", "border": "none", "borderBottom": "1px solid rgba(255,255,255,0.06)", "borderRadius": 0, "color": "${$root.currentPage === 'components' ? '#ffffff' : '#86868b'}", "fontSize": "15px", "fontWeight": "${$root.currentPage === 'components' ? 600 : 400}", "padding": "16px 20px", "height": "auto", "boxShadow": "none", "letterSpacing": "0.2px", "pointerEvents": "${$root.currentPage === 'components' ? 'none' : 'auto'}" },
+      "on_tap": [
+        { "action": "update_data", "path": "/currentPage", "value": "components" },
+        { "action": "update_data", "path": "/mobileMenuOpen", "value": false }
+      ]
+    },
+    {
+      "id": "drawer-nav-showcase",
+      "component": "button",
+      "content": "演示",
+      "className": "transition-all duration-200",
+      "style": { "width": "100%", "textAlign": "left", "backgroundColor": "${$root.currentPage === 'showcase' ? 'rgba(255,255,255,0.08)' : 'transparent'}", "border": "none", "borderBottom": "1px solid rgba(255,255,255,0.06)", "borderRadius": 0, "color": "${$root.currentPage === 'showcase' ? '#ffffff' : '#86868b'}", "fontSize": "15px", "fontWeight": "${$root.currentPage === 'showcase' ? 600 : 400}", "padding": "16px 20px", "height": "auto", "boxShadow": "none", "letterSpacing": "0.2px", "pointerEvents": "${$root.currentPage === 'showcase' ? 'none' : 'auto'}" },
+      "on_tap": [
+        { "action": "update_data", "path": "/currentPage", "value": "showcase" },
+        { "action": "update_data", "path": "/mobileMenuOpen", "value": false }
+      ]
+    },
+    {
+      "id": "drawer-nav-guide",
+      "component": "button",
+      "content": "上手",
+      "className": "transition-all duration-200",
+      "style": { "width": "100%", "textAlign": "left", "backgroundColor": "${$root.currentPage === 'guide' ? 'rgba(255,255,255,0.08)' : 'transparent'}", "border": "none", "borderBottom": "1px solid rgba(255,255,255,0.06)", "borderRadius": 0, "color": "${$root.currentPage === 'guide' ? '#ffffff' : '#86868b'}", "fontSize": "15px", "fontWeight": "${$root.currentPage === 'guide' ? 600 : 400}", "padding": "16px 20px", "height": "auto", "boxShadow": "none", "letterSpacing": "0.2px", "pointerEvents": "${$root.currentPage === 'guide' ? 'none' : 'auto'}" },
+      "on_tap": [
+        { "action": "update_data", "path": "/currentPage", "value": "guide" },
+        { "action": "update_data", "path": "/mobileMenuOpen", "value": false }
+      ]
+    },
+    {
+      "id": "drawer-nav-table",
+      "component": "button",
+      "content": "表格",
+      "className": "transition-all duration-200",
+      "style": { "width": "100%", "textAlign": "left", "backgroundColor": "${$root.currentPage === 'table' ? 'rgba(255,255,255,0.08)' : 'transparent'}", "border": "none", "borderBottom": "1px solid rgba(255,255,255,0.06)", "borderRadius": 0, "color": "${$root.currentPage === 'table' ? '#ffffff' : '#86868b'}", "fontSize": "15px", "fontWeight": "${$root.currentPage === 'table' ? 600 : 400}", "padding": "16px 20px", "height": "auto", "boxShadow": "none", "letterSpacing": "0.2px", "pointerEvents": "${$root.currentPage === 'table' ? 'none' : 'auto'}" },
+      "on_tap": [
+        { "action": "update_data", "path": "/currentPage", "value": "table" },
+        { "action": "update_data", "path": "/mobileMenuOpen", "value": false }
+      ]
+    },
+    {
+      "id": "drawer-nav-dashboard",
+      "component": "button",
+      "content": "大屏",
+      "className": "transition-all duration-200",
+      "style": { "width": "100%", "textAlign": "left", "backgroundColor": "${$root.currentPage === 'dashboard' ? 'rgba(255,255,255,0.08)' : 'transparent'}", "border": "none", "borderRadius": 0, "color": "${$root.currentPage === 'dashboard' ? '#ffffff' : '#86868b'}", "fontSize": "15px", "fontWeight": "${$root.currentPage === 'dashboard' ? 600 : 400}", "padding": "16px 20px", "height": "auto", "boxShadow": "none", "letterSpacing": "0.2px", "pointerEvents": "${$root.currentPage === 'dashboard' ? 'none' : 'auto'}" },
+      "on_tap": [
+        { "action": "update_data", "path": "/currentPage", "value": "dashboard" },
+        { "action": "update_data", "path": "/mobileMenuOpen", "value": false }
+      ]
+    },
+    {
+      "id": "footer-section",
+      "component": "box",
+      "align": "center",
+      "style": { "backgroundColor": "#f5f5f7", "padding": "40px 24px 32px" },
+      "children": ["footer-links", "footer-divider", "footer-meta"]
+    },
+    {
+      "id": "footer-links",
+      "component": "flex",
+      "gap": 24,
+      "align": "center",
+      "justify": "center",
+      "wrap": true,
+      "style": { "marginBottom": "20px" },
+      "children": ["footer-link-github", "footer-link-npm", "footer-link-docs"]
+    },
+    {
+      "id": "footer-link-github",
+      "component": "typography",
+      "type": "link",
+      "content": "GitHub",
+      "style": { "fontSize": "12px", "fontWeight": 400, "color": "#0066cc", "margin": 0 }
+    },
+    {
+      "id": "footer-link-npm",
+      "component": "typography",
+      "type": "link",
+      "content": "npm",
+      "style": { "fontSize": "12px", "fontWeight": 400, "color": "#0066cc", "margin": 0 }
+    },
+    {
+      "id": "footer-link-docs",
+      "component": "typography",
+      "type": "link",
+      "content": "文档",
+      "style": { "fontSize": "12px", "fontWeight": 400, "color": "#0066cc", "margin": 0 }
+    },
+    {
+      "id": "footer-divider",
+      "component": "divider",
+      "style": { "margin": "0 0 20px 0", "maxWidth": "980px", "width": "100%" }
+    },
+    {
+      "id": "footer-meta",
+      "component": "box",
+      "align": "center",
+      "spacing": 4,
+      "children": ["footer-license", "footer-powered"]
+    },
+    {
+      "id": "footer-license",
+      "component": "typography",
+      "type": "text",
+      "content": "Apache-2.0 License",
+      "style": { "fontSize": "12px", "fontWeight": 400, "color": "#86868b", "margin": 0, "textAlign": "center" }
+    },
+    {
+      "id": "footer-powered",
+      "component": "typography",
+      "type": "text",
+      "content": "Powered by FAUI",
+      "style": { "fontSize": "12px", "fontWeight": 400, "color": "#86868b", "margin": 0, "textAlign": "center" }
+    }
+  ],
+  "dataModel": {
+    "currentPage": "home",
+    "screen": "desktop",
+    "mobileMenuOpen": false
+  },
+  "root": ["root"]
+}
