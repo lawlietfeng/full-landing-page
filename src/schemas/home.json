@@ -59,7 +59,7 @@
       "align": "center",
       "justify": "center",
       "style": { "marginTop": "32px", "position": "relative", "zIndex": 1 },
-      "children": ["hero-cta-primary", "hero-cta-secondary"],
+      "children": ["hero-cta-primary", "hero-cta-secondary", "hero-cta-github"],
       "animation": { "preset": "fade", "duration": 0.6, "delay": 0.3 }
     },
     {
@@ -77,6 +77,16 @@
       "className": "hover:opacity-90 active:scale-95 transition-all duration-200 cursor-pointer",
       "style": { "backgroundColor": "transparent", "color": "#0066cc", "fontSize": "17px", "fontWeight": 400, "borderRadius": "980px", "border": "1px solid #0066cc", "padding": "11px 22px", "height": "auto", "lineHeight": "1.0" },
       "on_tap": [{ "action": "update_data", "path": "/currentPage", "value": "components" }]
+    },
+    {
+      "id": "hero-cta-github",
+      "component": "typography",
+      "type": "link",
+      "content": "GitHub",
+      "href": "https://github.com/lawlietfeng/faui",
+      "target": "_blank",
+      "className": "hover:opacity-90 active:scale-95 transition-all duration-200",
+      "style": { "backgroundColor": "transparent", "color": "#86868b", "fontSize": "17px", "fontWeight": 400, "borderRadius": "980px", "border": "1px solid rgba(134,134,139,0.3)", "padding": "11px 22px", "height": "auto", "lineHeight": "1.0", "display": "inline-flex", "alignItems": "center", "gap": "6px", "textDecoration": "none" }
     },
     {
       "id": "hero-tag-cloud",
