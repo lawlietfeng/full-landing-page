@@ -24,7 +24,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "faui": "file:../faui",
+    "@lawlietfeng/faui": "^1.0.0",
     "antd": "^5.24.9",
     "dayjs": "^1.11.13",
     "framer-motion": "^12.38.0",

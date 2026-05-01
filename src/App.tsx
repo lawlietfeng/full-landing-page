@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo, useCallback } from 'react'
-import { SchemaRenderer, ComponentRegistry } from 'faui/full'
-import type { Content } from 'faui/full'
+import { SchemaRenderer, ComponentRegistry } from '@lawlietfeng/faui/full'
+import type { Content } from '@lawlietfeng/faui/full'
 
 import shellJson from './schemas/shell.json'
 import homeJson from './schemas/home.json'
@@ -12,10 +12,13 @@ import dashboardJson from './schemas/dashboard.json'
 import { mockHttpRequest } from './mock'
 
 const VALID_PAGES = new Set(['home', 'components', 'showcase', 'guide', 'table', 'dashboard'])
+const BASE_PATH = import.meta.env.BASE_URL.replace(/\/$/, '')
 
 function getPageFromPath(): string {
-  const path = window.location.pathname.slice(1)
-  return VALID_PAGES.has(path) ? path : 'home'
+  const pathname = window.location.pathname
+  const path = BASE_PATH ? pathname.replace(BASE_PATH, '') : pathname
+  const segment = path.replace(/^\//, '')
+  return VALID_PAGES.has(segment) ? segment : 'home'
 }
 
 type Screen = 'mobile' | 'tablet' | 'desktop'
@@ -103,7 +106,7 @@ export default function App() {
       const page = String(action.value || 'home')
       setCurrentPage(page)
       window.scrollTo(0, 0)
-      const url = page === 'home' ? '/' : `/${page}`
+      const url = page === 'home' ? `${BASE_PATH}/` : `${BASE_PATH}/${page}`
       history.pushState(null, '', url)
     }
   }, [])
