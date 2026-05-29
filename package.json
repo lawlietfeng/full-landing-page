@@ -3,6 +3,9 @@
   "description": "Full-edition showcase site for faui — 7 schema-driven pages demonstrating 67+ components",
   "version": "1.0.0",
   "private": true,
+  "engines": {
+    "node": ">=22"
+  },
   "license": "Apache-2.0",
   "author": "lawliet",
   "repository": {
