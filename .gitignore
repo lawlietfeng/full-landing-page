@@ -8,9 +8,6 @@ dist
 .env.local
 .env.*.local
 
-# Lock files
-package-lock.json
-
 # IDE / AI tools
 .vscode/
 .idea/
